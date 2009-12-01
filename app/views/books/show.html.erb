@@ -1,0 +1,83 @@
+<p>
+  <b>Date:</b>
+  <%=h @book.date %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%=h @book.author %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @book.title %>
+</p>
+
+<p>
+  <b>Edition:</b>
+  <%=h @book.edition %>
+</p>
+
+<p>
+  <b>Place publisher:</b>
+  <%=h @book.place_publisher %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @book.status %>
+</p>
+
+<p>
+  <b>Clas no:</b>
+  <%=h @book.clas_no %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%=h @book.year %>
+</p>
+
+<p>
+  <b>Pages:</b>
+  <%=h @book.pages %>
+</p>
+
+<p>
+  <b>Volume:</b>
+  <%=h @book.volume %>
+</p>
+
+<p>
+  <b>Source:</b>
+  <%=h @book.source %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%=h @book.cost %>
+</p>
+
+<p>
+  <b>Bill no:</b>
+  <%=h @book.bill_no %>
+</p>
+
+<p>
+  <b>Isbn:</b>
+  <%=h @book.isbn %>
+</p>
+
+<p>
+  <b>Keywords:</b>
+  <%=h @book.keywords %>
+</p>
+
+<p>
+  <b>Remarks:</b>
+  <%=h @book.remarks %>
+</p>
+
+
+<%= link_to 'Edit', edit_book_path(@book.key) %> |
+<%= link_to 'Back', books_path %>

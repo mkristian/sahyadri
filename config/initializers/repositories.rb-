@@ -1,0 +1,1 @@
+DataMapper.setup(:books, :adapter => "sqlite3", :database => "db/books.sqlite3")

@@ -1,0 +1,144 @@
+<% limit = 10 %>
+<% has_next = @books.size > limit %>
+<% has_previous = @offset >= limit %>
+
+<style>
+  label {
+  color: darkblue;
+  font-weight: bold;
+  }
+  input.true {
+  color: darkgreen;
+  }
+  input.button {
+  font-weight: bold;
+  cursor: pointer;
+  }
+  input.false {
+  color: green;
+  cursor: default;
+  }
+  table {
+  margin-top: 1em;
+  }
+  tr.even {
+  background-color: #eeeeee;
+  }
+  thead tr {
+    background-color: lightgray;
+    color: darkred;
+  }  
+  div#head {
+    position: fixed;
+    top: 0em;
+    width: 100%;
+    background-color: white;
+    padding-top: .2em;
+    padding-bottom: .2em;
+    }
+  td, th{
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+   }
+   table {
+     margin-top: 4em;
+     border-right: 1px solid black;
+    border-bottom: 1px solid black;
+  }    
+
+  td, th {
+    padding: .2em;
+    }
+  form#logout {
+   float:right;
+   margin-right: 1em;
+  }
+tbody {
+#overflow: scroll;
+}
+
+</style>
+<div id="head">
+<div>
+  <form action="" method="get" style="float:left;">
+    <label for="query">book search: </label>
+    <input type="text" name="query" value="<%= @query %>" />
+    <input type="hidden" name="limit" value="<%= limit %>" />
+    <input class="button" type="submit" value="go" />
+  </form>
+</div>
+<div style="clear: both;">
+  <form action="" method="get" style="float:left;">
+    <input type="hidden" name="query" value="<%= @query %>" />
+    <input type="hidden" name="limit" value="<%= limit %>" />
+    <input type="hidden" name="offset" value="<%= @offset - limit %>" />
+    <input class="button <%= has_previous %>" type="submit" value="previous results" <%= 'disabled="disabled"' unless has_previous %> />
+  </form>
+  <form action="" method="get" style="float:left;">
+    <input type="hidden" name="query" value="<%= @query %>" />
+    <input type="hidden" name="limit" value="<%= limit %>" />
+    <input type="hidden" name="offset" value="<%= @offset + limit %>" />
+    <input class="button <%= has_next %>" type="submit" value="next results" <%= 'disabled="disabled"' unless has_next %> />
+  </form>
+  <% form_tag "", :method => :delete, :id => 'logout' do %>
+<input class="button" type="submit" value="logout" />
+<input type="hidden" name="login" value="<%= controller.send(:current_user).login %>" />
+  <% end %>
+</div>
+</div>
+
+<table style="clear: both;" cellpadding="0" cellspacing="0">
+  <thead>
+  <tr>
+    <th>Date</th>
+    <th>Author</th>
+    <th>Title</th>
+    <th>Edition</th>
+    <th>Place publisher</th>
+    <th>Status</th>
+    <th>Clas no</th>
+    <th>Year</th>
+    <th>Pages</th>
+    <th>Volume</th>
+    <th>Source</th>
+    <th>Cost</th>
+    <th>Bill no</th>
+    <th>Isbn</th>
+    <th>Keywords</th>
+    <th>Remarks</th>
+  </tr>
+  </thead>
+
+  <tbody>
+<% @books.each do |book| %>
+  <tr class='<%= cycle("odd", "even") %>' >
+    <td><%=h book.date %></td>
+    <td><%=h book.author %></td>
+    <td><%=h book.title %></td>
+    <td><%=h book.edition %></td>
+    <td><%=h book.place_publisher %></td>
+    <td><%=h book.status %></td>
+    <td><%=h book.clas_no %></td>
+    <td><%=h book.year %></td>
+    <td><%=h book.pages %></td>
+    <td><%=h book.volume %></td>
+    <td><%=h book.source %></td>
+    <td><%=h book.cost %></td>
+    <td><%=h book.bill_no %></td>
+    <td><%=h book.isbn %></td>
+    <td><%=h book.keywords %></td>
+    <td><%=h book.remarks %></td>
+<!--
+    <td><%= link_to 'Show', book_path(book.key) %></td>
+    <td><%= link_to 'Edit', edit_book_path(book.key) %></td>
+    <td><%= link_to 'Destroy', book_path(book.key), :confirm => 'Are you sure?', :method => :delete %></td>
+-->
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<br />
+<!--
+<%= link_to 'New book', new_book_path %>
+-->
