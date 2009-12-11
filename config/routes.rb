@@ -1,8 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resource :configuration
+
   map.resources :books
 
-
-  map.resources :books
+  map.resource :authentication
 
   map.resources :locales
 
