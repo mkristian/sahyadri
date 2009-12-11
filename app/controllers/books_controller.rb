@@ -66,7 +66,7 @@ class BooksController < ApplicationController
     @book.current_user = current_user
 
     respond_to do |format|
-      if @book.update(params[:book]) or not @book.dirty?
+      if @book.update(params[:book])
         flash[:notice] = 'Book was successfully updated.'
         format.html { redirect_to(book_url(@book.id)) }
         format.xml  { head :ok }
