@@ -38,16 +38,28 @@ class Book
   property :total, Text, :nullable => false, :format => /^[^<">]*$/
 
   before :valid? do
-    val = attributes.values.join(" ").strip
+    attr = attributes
+    attr.delete(:total)
+    attr.delete(:created_at)
+    attr.delete(:updated_at)
+    attr.delete(:updated_by_id)
+
+    val = attr.values.join(" ").strip
     attribute_set(:total, val)
   end
 
-  timestamps :on
+  timestamps :at
 
   modified_by "User"
 
   def date
-    created_on
+    created_at
+  end
+
+  alias :to_x :to_xml_document
+  def to_xml_document(opts, doc = nil)
+    opts.merge!({:methods => [:updated_by], :exclude => [:updated_by_id]})
+    to_x(opts, doc)
   end
 
   def self.repository(name = nil, &block)

@@ -9,7 +9,7 @@ development:
       timeout: 5000
     books:
       adapter: lucene
-      path: db/books
+      path: db/lucene
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

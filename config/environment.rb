@@ -7,6 +7,7 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  DM_VERSION = '0.10.1'
   # add middleware
   #config.middleware.use 'Ixtlan::CmsScript'
   config.middleware.use 'Rack::Deflater'
@@ -16,26 +17,20 @@ Rails::Initializer.run do |config|
   # deactive active_record
   config.frameworks -= [ :active_record ]
   
-  config.gem 'ixtlan', :lib => 'models'
-  config.gem 'ixtlan', :lib => 'error_handling'
-  config.gem 'ixtlan', :lib => 'optimistic_persistence'
-  config.gem 'ixtlan', :lib => 'audit'
-  config.gem 'ixtlan', :lib => 'session_timeout'
-  config.gem 'ixtlan', :lib => 'unrestful_authentication'
-  config.gem 'ixtlan', :lib => 'guard'
   config.gem 'logging'
   config.gem 'slf4r'
   config.gem 'rspec-rails', :lib => false
   config.gem 'rspec', :lib => false
   config.gem 'addressable', :lib => 'addressable/uri'
-  config.gem 'dm-core'
-  config.gem 'dm-serializer'
-  config.gem 'dm-migrations'
-  config.gem 'dm-timestamps'
-  config.gem 'dm-validations'
-  config.gem 'do_sqlite3'
+  config.gem 'dm-core', :version => DM_VERSION
+  config.gem 'dm-migrations', :version => DM_VERSION
+  config.gem 'dm-timestamps', :version => DM_VERSION
+  config.gem 'dm-validations', :version => DM_VERSION
   config.gem 'dm-lucene-adapter'
+  config.gem 'do_sqlite3'
   config.gem 'datamapper4rails'
+  config.gem 'ixtlan'
+  
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
