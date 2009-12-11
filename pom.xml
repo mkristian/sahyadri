@@ -3,18 +3,29 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.example</groupId>
-  <artifactId>demo</artifactId>
+  <groupId>org.sahyadrischool</groupId>
+  <artifactId>books</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>rails datamapper demo</name>
+  <name>sahyadri school books search</name>
   <url>http://github.com/mkristian/rails-templates/blob/master/datamapper.rb</url>
   <dependencies>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-core</artifactId>
       <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>${gwt.version}</version> 
+      <scope>provided</scope>
     </dependency> 
+    <dependency>
+      <groupId>de.saumya.gwt.translation</groupId>
+      <artifactId>gui</artifactId>
+      <version>0.2.0-SNAPSHOT</version> 
+    </dependency>
   </dependencies>
   <pluginRepositories>
     <pluginRepository>
@@ -24,25 +35,68 @@
     </pluginRepository>
   </pluginRepositories>
   <build>
+    <outputDirectory>war/WEB-INF/classes</outputDirectory> 
     <plugins>
       <plugin>
         <groupId>de.saumya.mojo</groupId>
         <artifactId>rails-maven-plugin</artifactId>
-	<version>0.4.0-SNAPSHOT</version>
+	<version>0.3.1</version>
       </plugin>
       <plugin>
         <groupId>de.saumya.mojo</groupId>
         <artifactId>jruby-maven-plugin</artifactId>
-	<version>0.4.0-SNAPSHOT</version>
+	<version>0.3.1</version>
       </plugin>
       <plugin>
         <groupId>de.saumya.mojo</groupId>
         <artifactId>gem-maven-plugin</artifactId>
-	<version>0.4.0-SNAPSHOT</version>
+	<version>0.3.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+	<version>1.1</version>
+        <configuration>
+          <!--inplace>true</inplace>
+          <module>de.saumya.gwt.translation.gui.GUI</module-->
+          <runTarget>org.sahyadrischool.books.Books/Books.html</runTarget>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <goal>test</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>clean</id>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+            <phase>clean</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <warSourceDirectory>war</warSourceDirectory>
+          <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+        </configuration>
       </plugin>
     </plugins>
   </build>
   <properties>
+    <gwt.version>1.7.1</gwt.version>
     <jruby.fork>false</jruby.fork>
   </properties>
 </project>
