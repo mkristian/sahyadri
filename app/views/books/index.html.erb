@@ -38,12 +38,15 @@
     }
   td, th{
     border-left: 1px solid black;
+    border-bottom: 1px solid black;
+   }
+   th {
     border-top: 1px solid black;
+    border-bottom: 1px solid black;
    }
    table {
      margin-top: 4em;
      border-right: 1px solid black;
-    border-bottom: 1px solid black;
   }    
 
   td, th {
@@ -53,11 +56,17 @@
    float:right;
    margin-right: 1em;
   }
+
+
 tbody {
-#overflow: scroll;
+    width: 970px;
+    overflow: auto; 
+    height: 350px;
+    overflow-x: hidden;
 }
 
 </style>
+
 <div id="head">
 <div>
   <form action="" method="get" style="float:left;">
@@ -87,9 +96,11 @@ tbody {
 </div>
 </div>
 
-<table style="clear: both;" cellpadding="0" cellspacing="0">
-  <thead>
-  <tr>
+<% if @books.size > 0 %>
+<div id="books" style="clear: both;">
+  <table cellspacing="0">
+     <thead>
+      <tr> 
     <th>Date</th>
     <th>Author</th>
     <th>Title</th>
@@ -106,6 +117,7 @@ tbody {
     <th>Isbn</th>
     <th>Keywords</th>
     <th>Remarks</th>
+    <th width="13"><!-- --> </th>
   </tr>
   </thead>
 
@@ -128,6 +140,7 @@ tbody {
     <td><%=h book.isbn %></td>
     <td><%=h book.keywords %></td>
     <td><%=h book.remarks %></td>
+    <td></td>
 <!--
     <td><%= link_to 'Show', book_path(book.key) %></td>
     <td><%= link_to 'Edit', edit_book_path(book.key) %></td>
@@ -137,8 +150,6 @@ tbody {
 <% end %>
 </tbody>
 </table>
+</div>
 
-<br />
-<!--
-<%= link_to 'New book', new_book_path %>
--->
+<% end %>
