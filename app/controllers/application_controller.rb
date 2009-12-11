@@ -5,20 +5,6 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :login
   before_filter :check_session_expiry
 
-  # override default to use nice User (without namespace)
-  def login_from_params
-    User.authenticate(params[:login], params[:password])
-  end
-
-  def login_from_session
-    User.get(session[:user_id])
-  end
-
-  # override default to use value from configuration
-  def new_session_timeout
-    Ixtlan::Models::Configuration.instance.session_idle_timeout.minutes.from_now
-  end
-
   # needs 'optimistic_persistence'
   rescue_from DataMapper::StaleResourceError, :with => :stale_resource
 
