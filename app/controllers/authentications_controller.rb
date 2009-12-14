@@ -5,9 +5,7 @@ class AuthenticationsController < ApplicationController
   protected
   def login_from_params
     auth = params[:authentication]
-    u = User.authenticate(auth[:login], auth[:password])
-    p u
-    u
+    User.authenticate(auth[:login], auth[:password])
   end
 
   public

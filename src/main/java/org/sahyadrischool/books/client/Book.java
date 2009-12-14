@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import com.google.gwt.xml.client.Element;
 
 import de.saumya.gwt.persistence.client.Repository;
+import de.saumya.gwt.persistence.client.ResourceChangeListener;
 import de.saumya.gwt.persistence.client.ResourceFactory;
 import de.saumya.gwt.persistence.client.ResourceWithID;
 import de.saumya.gwt.session.client.model.User;
@@ -18,8 +19,10 @@ public class Book extends ResourceWithID<Book> {
     private final UserFactory userFactory;
 
     protected Book(final Repository repository,
-            final ResourceFactory<Book> factory, final UserFactory userFactory) {
-        super(repository, factory);
+            final ResourceFactory<Book> factory,
+            final ResourceChangeListener<Book> listener,
+            final UserFactory userFactory) {
+        super(repository, factory, listener);
         this.userFactory = userFactory;
     }
 
@@ -115,10 +118,13 @@ public class Book extends ResourceWithID<Book> {
 
     @Override
     public String display() {
-        return new StringBuffer("book(").append(this.title)
-                .append(": ")
-                .append(this.author)
-                .append(")")
-                .toString();
+        if (this.author == null) {
+            return this.title == null ? "" : this.title;
+        }
+        else {
+            return new StringBuffer(this.title).append(": ")
+                    .append(this.author)
+                    .toString();
+        }
     }
 }

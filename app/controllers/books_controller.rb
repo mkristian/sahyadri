@@ -21,7 +21,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @book }
+      format.xml { render :xml => @book }
     end
   end
 
@@ -69,7 +69,7 @@ class BooksController < ApplicationController
       if @book.update(params[:book])
         flash[:notice] = 'Book was successfully updated.'
         format.html { redirect_to(book_url(@book.id)) }
-        format.xml  { head :ok }
+        format.xml  { render :xml => @book }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @book.errors, :status => :unprocessable_entity }
