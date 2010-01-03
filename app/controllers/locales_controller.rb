@@ -1,5 +1,7 @@
 class LocalesController < ApplicationController
 
+  skip_before_filter :authenticate, :guard, :only => [:show]
+
   # GET /locales
   # GET /locales.xml
   def index

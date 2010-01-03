@@ -7,7 +7,7 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  DM_VERSION = '0.10.1'
+  DM_VERSION = '0.10.2'
   # add middleware
   #config.middleware.use 'Ixtlan::CmsScript'
   config.middleware.use 'Rack::Deflater'
@@ -26,6 +26,7 @@ Rails::Initializer.run do |config|
   config.gem 'dm-migrations', :version => DM_VERSION
   config.gem 'dm-timestamps', :version => DM_VERSION
   config.gem 'dm-validations', :version => DM_VERSION
+  config.gem 'dm-aggregates', :version => DM_VERSION
   config.gem 'dm-lucene-adapter'
   config.gem 'do_sqlite3'
   config.gem 'datamapper4rails'

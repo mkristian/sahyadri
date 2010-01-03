@@ -1,12 +1,12 @@
 package org.sahyadrischool.books.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.RootPanel;
 
 import de.saumya.gwt.session.client.Notifications;
 import de.saumya.gwt.session.client.Session;
 import de.saumya.gwt.translation.common.client.GetTextController;
 import de.saumya.gwt.translation.common.client.route.Screen;
-import de.saumya.gwt.translation.common.client.route.ScreenController;
 import de.saumya.gwt.translation.common.client.widget.ResourceActionPanel;
 import de.saumya.gwt.translation.common.client.widget.ResourceCollectionPanel;
 import de.saumya.gwt.translation.common.client.widget.ResourceMutator;
@@ -253,16 +253,17 @@ public class Books implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        final GUIContainer container = new GUIContainer();
 
-        final ScreenController screenController = container.build("en");
+        final GUIContainer container = new GUIContainer(RootPanel.get());
+
         final BookFactory factory = new BookFactory(container.repository,
                 container.notifications,
                 container.userFactory);
-        screenController.addScreen(new BookScreen(container.getTextController,
-                factory,
-                container.session,
-                new ResourceMutator<Book>(),
-                container.notifications), "books");
+        container.screenController.addScreen(new BookScreen(container.getTextController,
+                                                     factory,
+                                                     container.session,
+                                                     new ResourceMutator<Book>(),
+                                                     container.notifications),
+                                             "books");
     }
 }

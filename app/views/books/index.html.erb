@@ -73,19 +73,26 @@ tbody {
     <label for="query">book search: </label>
     <input type="text" name="query" value="<%= @query %>" />
     <input type="hidden" name="limit" value="<%= limit %>" />
-    <input class="button" type="submit" value="go" />
+    <input class="button" type="submit" value="exact" name="exact"/>
+    <input class="button" type="submit" value="similar" name="similar"/>
   </form>
 </div>
 <div style="clear: both;">
   <form action="" method="get" style="float:left;">
     <input type="hidden" name="query" value="<%= @query %>" />
     <input type="hidden" name="limit" value="<%= limit %>" />
+    <% unless params[:exact].nil? %>
+    <input type="hidden" name="exact" value="exact" />
+    <% end %>
     <input type="hidden" name="offset" value="<%= @offset - limit %>" />
     <input class="button <%= has_previous %>" type="submit" value="previous results" <%= 'disabled="disabled"' unless has_previous %> />
   </form>
   <form action="" method="get" style="float:left;">
     <input type="hidden" name="query" value="<%= @query %>" />
     <input type="hidden" name="limit" value="<%= limit %>" />
+    <% unless params[:exact].nil? %>
+    <input type="hidden" name="exact" value="exact" />
+    <% end %>
     <input type="hidden" name="offset" value="<%= @offset + limit %>" />
     <input class="button <%= has_next %>" type="submit" value="next results" <%= 'disabled="disabled"' unless has_next %> />
   </form>
@@ -93,6 +100,14 @@ tbody {
 <input class="button" type="submit" value="logout" />
 <input type="hidden" name="login" value="<%= controller.send(:current_user).login %>" />
   <% end %>
+  <form action="books.csv" method="get" style="float:right;">
+    <input type="hidden" name="query" value="<%= @query %>" />
+    <input type="hidden" name="limit" value="987654" />
+    <% unless params[:exact].nil? %>
+    <input type="hidden" name="exact" value="exact" />
+    <% end %>
+    <input class="button" type="submit" value="export as CSV"/>
+  </form>
 </div>
 </div>
 

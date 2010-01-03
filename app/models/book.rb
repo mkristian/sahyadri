@@ -3,8 +3,6 @@ class Book
 
   property :id, Serial
 
-  property :old_id, Integer, :nullable => true
-
   property :author, String, :nullable => true, :format => /^[^<">]*$/, :length => 64
 
   property :title, String, :nullable => false, :format => /^[^<>]*$/, :length => 192
@@ -53,7 +51,7 @@ class Book
   modified_by "User"
 
   def date
-    created_at
+    created_at.strftime("%d-%m-%Y") if created_at rescue created_at
   end
 
   alias :to_x :to_xml_document
