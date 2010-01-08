@@ -25,16 +25,17 @@ config.action_view.cache_template_loading            = true
 # config.action_mailer.raise_delivery_errors = false
 
 # Enable threaded mode
-# config.threadsafe!
-config.action_mailer.delivery_method = :smtp
+config.threadsafe!
 
-require "smtp_tls"
+#config.action_mailer.delivery_method = :smtp
 
-ActionMailer::Base.smtp_settings = {
-:address => CONFIG[:smtp][:address],
-:port => CONFIG[:smtp][:port],
-:domain => CONFIG[:smtp][:domain],
-:authentication => CONFIG[:smtp][:authentication],
-:user_name => CONFIG[:smtp][:user_name],
-:password => CONFIG[:smtp][:password]
-} 
+#require "smtp_tls"
+
+#ActionMailer::Base.smtp_settings = {
+#:address => CONFIG[:smtp][:address],
+#:port => CONFIG[:smtp][:port],
+#:domain => CONFIG[:smtp][:domain],
+#:authentication => CONFIG[:smtp][:authentication],
+#:user_name => CONFIG[:smtp][:user_name],
+#:password => CONFIG[:smtp][:password]
+#} 
