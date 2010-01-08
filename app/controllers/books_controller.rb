@@ -1,4 +1,5 @@
 require 'csv'
+require 'books_import_export'
 class BooksController < ApplicationController
 
   # GET /books
@@ -18,7 +19,6 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html
       format.xml  { render :xml => @books }
-          p @books.size
       format.csv do
         render :text => proc { |response, output|
           def output.<<(str)

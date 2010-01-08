@@ -10,12 +10,13 @@ Rails::Initializer.run do |config|
   DM_VERSION = '0.10.2'
   # add middleware
   #config.middleware.use 'Ixtlan::CmsScript'
+  config.middleware.use 'Ixtlan::ChildPath', 'books'
   config.middleware.use 'Rack::Deflater'
   config.middleware.use 'DataMapper::IdentityMaps'
   config.middleware.use 'DataMapper::RestfulTransactions'
   
   # deactive active_record
-  config.frameworks -= [ :active_record ]
+  config.frameworks -= [ :active_record, :active_resource ]
   
   config.gem 'logging'
   config.gem 'slf4r'

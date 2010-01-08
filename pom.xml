@@ -11,6 +11,16 @@
   <url>http://github.com/mkristian/rails-templates/blob/master/datamapper.rb</url>
   <dependencies>
     <dependency>
+      <groupId>org.jruby.rack</groupId>
+      <artifactId>jruby-rack</artifactId>
+      <version>0.9.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jruby</groupId>
+      <artifactId>jruby-complete</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+    <dependency>
       <groupId>rubygems</groupId>
       <artifactId>extlib</artifactId>
       <version>0.9.14</version>
@@ -107,6 +117,12 @@
       <version>0.2.5</version>
       <type>gem</type>
     </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>rake</artifactId>
+      <version>0.8.7</version>
+      <type>gem</type>
+    </dependency>
 <!--
     <dependency>
       <groupId>rubygems</groupId>
@@ -176,7 +192,7 @@
     <dependency>
       <groupId>de.saumya.gwt.translation</groupId>
       <artifactId>gui</artifactId>
-      <version>0.2.0</version> 
+      <version>0.2.1</version> 
     </dependency>
   </dependencies>
   <pluginRepositories>
@@ -208,7 +224,22 @@
       <plugin>
         <groupId>de.saumya.mojo</groupId>
         <artifactId>rails-maven-plugin</artifactId>
-	<version>${jruby.plugins.version}</version>
+	<version>${jruby.plugins.version}</version> 
+	<configuration>
+          <warSourceDirectory>war</warSourceDirectory>
+          <includeDirs>db</includeDirs>
+          <excludeDirs>db/migrate</excludeDirs>
+        </configuration>
+        <executions>
+           <execution>
+            <id>rail-war</id>
+            <goals>
+              <goal>rails-freeze-gems</goal>
+              <goal>gems-unpack-dependencies</goal>
+              <goal>war</goal>
+            </goals>
+           </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>de.saumya.mojo</groupId>
@@ -225,10 +256,6 @@
 	    <phase>initialize</phase>
 	  </execution>
 	</executions>
-	<configuration>
-	  <gemHome>${project.build.directory}/rubygems</gemHome>
-	  <gemPath>${project.build.directory}/rubygems</gemPath>
-	</configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -269,10 +296,20 @@
           <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
         </configuration>
       </plugin>
+      <plugin>
+	<groupId>org.mortbay.jetty</groupId>
+	<artifactId>jetty-maven-plugin</artifactId>
+	<version>7.0.1.v20091125</version>
+	<configuration>
+          <webAppSourceDirectory>war</webAppSourceDirectory>
+          <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+	</configuration>
+      </plugin>
     </plugins>
   </build>
   <properties>
     <gwt.version>1.7.1</gwt.version>
+    <!-- this allows to configure it for rails-maven-plugin as well jruby-maven-plugin and gem-maven-plugin -->
     <jruby.gem.home>${project.build.directory}/rubygems</jruby.gem.home>
     <jruby.gem.path>${project.build.directory}/rubygems</jruby.gem.path>
     <jruby.plugins.version>0.7.0</jruby.plugins.version>
