@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.resources :books
+  map.connect 'books', :controller => :books, :action => 'logout'
 
   map.resource :configuration
 
