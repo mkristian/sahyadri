@@ -312,7 +312,7 @@
     <!-- this allows to configure it for rails-maven-plugin as well jruby-maven-plugin and gem-maven-plugin -->
     <jruby.gem.home>${project.build.directory}/rubygems</jruby.gem.home>
     <jruby.gem.path>${project.build.directory}/rubygems</jruby.gem.path>
-    <jruby.plugins.version>0.7.0</jruby.plugins.version>
+    <jruby.plugins.version>0.8.0-SNAPSHOT</jruby.plugins.version>
     <jruby.fork>true</jruby.fork>
   </properties>
 </project>
