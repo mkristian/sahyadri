@@ -9,12 +9,19 @@ class BooksController < ApplicationController
     @limit = params[:limit].to_i + 1
     @offset = params[:offset].to_i
     field = 
-      if params[:exact].nil? # assume similar otherwise
-        :total.like
-      else
+      if "false" == params.delete(:fuzzy)
         :total
+      else
+        :total.like
       end
-    @books = @limit > 1 ? Book.all(field => "#{@query}", :limit => @limit, :offset => @offset) :  Book.all(:id => -1123870) # the funny id is to produce an empty result set
+    @books =
+      if @limit > 1 && @query
+        Book.all(field => "#{@query}", :limit => @limit, :offset => @offset) 
+      elsif @query
+        Book.all(field => "#{@query}")
+      else
+        Book.all(:id => -1123870) # the funny id is to produce an empty result set
+      end
     
     respond_to do |format|
       format.html

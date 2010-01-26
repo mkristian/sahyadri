@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 import com.google.gwt.xml.client.Element;
 
 import de.saumya.gwt.persistence.client.Repository;
-import de.saumya.gwt.persistence.client.ResourceChangeListener;
 import de.saumya.gwt.persistence.client.ResourceFactory;
 import de.saumya.gwt.persistence.client.ResourceWithID;
 import de.saumya.gwt.session.client.model.User;
@@ -19,10 +18,8 @@ public class Book extends ResourceWithID<Book> {
     private final UserFactory userFactory;
 
     protected Book(final Repository repository,
-            final ResourceFactory<Book> factory,
-            final ResourceChangeListener<Book> listener,
-            final UserFactory userFactory) {
-        super(repository, factory, listener);
+            final ResourceFactory<Book> factory, final UserFactory userFactory) {
+        super(repository, factory);
         this.userFactory = userFactory;
     }
 
@@ -46,26 +43,26 @@ public class Book extends ResourceWithID<Book> {
     public User      updatedBy;
 
     @Override
-    protected void appendXml(final StringBuffer buf) {
+    protected void appendXml(final StringBuilder buf) {
         super.appendXml(buf);
-        append(buf, "author", this.author);
-        append(buf, "title", this.title);
-        append(buf, "edition", this.edition);
-        append(buf, "place_publisher", this.placePublisher);
-        append(buf, "status", this.status);
-        append(buf, "clas_no", this.clasNo);
-        append(buf, "year", this.year);
-        append(buf, "pages", this.pages);
-        append(buf, "volume", this.volume);
-        append(buf, "source", this.source);
-        append(buf, "cost", this.cost);
-        append(buf, "bill_no", this.billNo);
-        append(buf, "isbn", this.isbn);
-        append(buf, "keywords", this.keywords);
-        append(buf, "remarks", this.remarks);
+        appendXml(buf, "author", this.author);
+        appendXml(buf, "title", this.title);
+        appendXml(buf, "edition", this.edition);
+        appendXml(buf, "place_publisher", this.placePublisher);
+        appendXml(buf, "status", this.status);
+        appendXml(buf, "clas_no", this.clasNo);
+        appendXml(buf, "year", this.year);
+        appendXml(buf, "pages", this.pages);
+        appendXml(buf, "volume", this.volume);
+        appendXml(buf, "source", this.source);
+        appendXml(buf, "cost", this.cost);
+        appendXml(buf, "bill_no", this.billNo);
+        appendXml(buf, "isbn", this.isbn);
+        appendXml(buf, "keywords", this.keywords);
+        appendXml(buf, "remarks", this.remarks);
 
-        append(buf, "updated_at", this.updatedAt);
-        append(buf, "updated_by", this.updatedBy);
+        appendXml(buf, "updated_at", this.updatedAt);
+        appendXml(buf, "updated_by", this.updatedBy);
     }
 
     @Override
@@ -92,7 +89,7 @@ public class Book extends ResourceWithID<Book> {
     }
 
     @Override
-    public void toString(final StringBuffer buf) {
+    public void toString(final StringBuilder buf) {
         super.toString(buf);
         buf.append(":author => ").append(this.author);
         buf.append(", :title => ").append(this.title);
