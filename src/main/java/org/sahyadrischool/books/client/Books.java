@@ -6,13 +6,15 @@ import com.google.gwt.user.client.ui.RootPanel;
 import de.saumya.gwt.persistence.client.ResourceNotifications;
 import de.saumya.gwt.session.client.Session;
 import de.saumya.gwt.translation.common.client.GetTextController;
-import de.saumya.gwt.translation.common.client.route.Screen;
 import de.saumya.gwt.translation.common.client.widget.DefaultResourceActionPanel;
+import de.saumya.gwt.translation.common.client.widget.LoadingNotice;
 import de.saumya.gwt.translation.common.client.widget.ResourceBindings;
 import de.saumya.gwt.translation.common.client.widget.ResourceCollectionListing;
-import de.saumya.gwt.translation.common.client.widget.ResourceCollectionNavigationWithExport;
+import de.saumya.gwt.translation.common.client.widget.ResourceCollectionNavigationWithCSVExport;
 import de.saumya.gwt.translation.common.client.widget.ResourceCollectionPanel;
 import de.saumya.gwt.translation.common.client.widget.ResourceFields;
+import de.saumya.gwt.translation.common.client.widget.ResourceHeaderPanel;
+import de.saumya.gwt.translation.common.client.widget.ResourcePanel;
 import de.saumya.gwt.translation.common.client.widget.ResourceScreen;
 import de.saumya.gwt.translation.gui.client.GUIContainer;
 import de.saumya.gwt.translation.gui.client.IntegerTextBoxBinding;
@@ -21,11 +23,11 @@ import de.saumya.gwt.translation.gui.client.TextBoxBinding;
 
 public class Books implements EntryPoint {
 
-    public static class BookPanel extends ResourceFields<Book> {
+    private static class BookFields extends ResourceFields<Book> {
 
-        protected BookPanel(final GetTextController getTextController,
-                final ResourceBindings<Book> mutator) {
-            super(getTextController, mutator);
+        protected BookFields(final GetTextController getTextController,
+                final ResourceBindings<Book> bindings) {
+            super(getTextController, bindings);
             add("author", new TextBoxBinding<Book>() {
 
                 @Override
@@ -224,18 +226,35 @@ public class Books implements EntryPoint {
         }
     }
 
-    static class BookScreen extends ResourceScreen<Book> {
+    private static class BookHeader extends ResourceHeaderPanel<Book> {
 
-        protected BookScreen(final GetTextController getTextController,
+        public BookHeader(final GetTextController getTextController) {
+            super(getTextController);
+        }
+
+        @Override
+        public void reset(final Book resource) {
+            reset(resource, resource.updatedAt, resource.updatedBy);
+        }
+
+    }
+
+    private static class BookScreen extends ResourceScreen<Book> {
+
+        protected BookScreen(final LoadingNotice loadingNotice,
+                final GetTextController getTextController,
                 final BookFactory factory, final Session session,
                 final ResourceBindings<Book> bindings,
                 final ResourceNotifications notifications) {
-            super(getTextController,
+            super(loadingNotice,
                     factory,
                     session,
-                    new BookPanel(getTextController, bindings),
-                    new ResourceCollectionPanel<Book>(new ResourceCollectionNavigationWithExport<Book>(factory,
-                            getTextController),
+                    new ResourcePanel<Book>(new BookHeader(getTextController),
+                            new BookFields(getTextController, bindings)),
+                    new ResourceCollectionPanel<Book>(loadingNotice,
+                            new ResourceCollectionNavigationWithCSVExport<Book>(loadingNotice,
+                                    factory,
+                                    getTextController),
                             new ResourceCollectionListing<Book>(session,
                                     factory,
                                     getTextController)),
@@ -246,17 +265,6 @@ public class Books implements EntryPoint {
                             notifications),
                     notifications);
         }
-
-        @Override
-        protected void reset(final Book resource) {
-            reset(resource, resource.updatedAt, resource.updatedBy);
-        }
-
-        @Override
-        public Screen<?> child(final String parentKey) {
-            return null;
-        }
-
     }
 
     @Override
@@ -267,7 +275,8 @@ public class Books implements EntryPoint {
         final BookFactory factory = new BookFactory(container.repository,
                 container.notifications,
                 container.userFactory);
-        container.screenController.addScreen(new BookScreen(container.getTextController,
+        container.screenController.addScreen(new BookScreen(container.loadingNotice,
+                                                     container.getTextController,
                                                      factory,
                                                      container.session,
                                                      new ResourceBindings<Book>(),
