@@ -1,17 +1,28 @@
 package org.sahyadrischool.books.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.Hyperlink;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.Widget;
 
+import de.saumya.gwt.persistence.client.ResourceCollection;
+import de.saumya.gwt.persistence.client.ResourceFactory;
 import de.saumya.gwt.persistence.client.ResourceNotifications;
 import de.saumya.gwt.session.client.Session;
+import de.saumya.gwt.session.client.Session.Action;
 import de.saumya.gwt.translation.common.client.GetTextController;
+import de.saumya.gwt.translation.common.client.route.HasPathFactory;
+import de.saumya.gwt.translation.common.client.route.PathFactory;
 import de.saumya.gwt.translation.common.client.widget.DefaultResourceActionPanel;
 import de.saumya.gwt.translation.common.client.widget.LoadingNotice;
 import de.saumya.gwt.translation.common.client.widget.ResourceBindings;
-import de.saumya.gwt.translation.common.client.widget.ResourceCollectionListing;
 import de.saumya.gwt.translation.common.client.widget.ResourceCollectionNavigationWithCSVExport;
 import de.saumya.gwt.translation.common.client.widget.ResourceCollectionPanel;
+import de.saumya.gwt.translation.common.client.widget.ResourceCollectionResetable;
 import de.saumya.gwt.translation.common.client.widget.ResourceFields;
 import de.saumya.gwt.translation.common.client.widget.ResourceHeaderPanel;
 import de.saumya.gwt.translation.common.client.widget.ResourcePanel;
@@ -239,6 +250,136 @@ public class Books implements EntryPoint {
 
     }
 
+    private static class BookListing extends Grid implements HasPathFactory,
+            ResourceCollectionResetable<Book> {
+
+        private PathFactory                   pathFactory;
+        protected final Session               session;
+
+        protected final ResourceFactory<Book> factory;
+
+        private static Element append(final Element tr, final String text) {
+            final Element th = DOM.createElement("th");
+            th.setInnerText(text);
+            DOM.appendChild(tr, th);
+            return th;
+        }
+
+        BookListing(final Session session, final ResourceFactory<Book> factory) {
+            super(11, 16);
+            setStyleName("books");
+            setCellSpacing(0);
+            this.factory = factory;
+            this.session = session;
+            final Element thead = DOM.createElement("thead");
+            DOM.insertChild(getElement(), thead, 1);
+            final Element tr = DOM.createElement("tr");
+            DOM.appendChild(thead, tr);
+            append(tr, "id");
+            append(tr, "title");
+            append(tr, "author");
+            append(tr, "billNo");
+            append(tr, "clasNo");
+            append(tr, "cost");
+            append(tr, "edition");
+            append(tr, "isbn");
+            append(tr, "keywords");
+            append(tr, "pages");
+            append(tr, "placePublisher");
+            append(tr, "source");
+            append(tr, "status");
+            append(tr, "volume");
+            append(tr, "remarks");
+            final Element last = append(tr, "\u00a0");
+            DOM.setElementProperty(last, "width", "15");
+        }
+
+        @Override
+        public PathFactory getPathFactory() {
+            return this.pathFactory;
+        }
+
+        @Override
+        public void setPathFactory(final PathFactory pathFactory) {
+            this.pathFactory = pathFactory;
+        }
+
+        enum Display {
+            EDIT, SHOW, DISPLAY
+        }
+
+        Display display() {
+            if (this.session.isAllowed(Action.UPDATE,
+                                       this.factory.storagePluralName())) {
+                return Display.EDIT;
+            }
+            else if (this.session.isAllowed(Action.SHOW,
+                                            this.factory.storagePluralName())) {
+                return Display.SHOW;
+            }
+            else {
+                return Display.DISPLAY;
+            }
+        }
+
+        Widget createHyperlink(final Display display, final String text,
+                final Book resource) {
+            switch (display) {
+            case EDIT:
+                return new Hyperlink(text,
+                        this.pathFactory.editPath(resource.key()));
+            case SHOW:
+                return new Hyperlink(text,
+                        this.pathFactory.showPath(resource.key()));
+            case DISPLAY:
+                return new Label(text);
+            default:
+                throw new RuntimeException("should never reach here");
+            }
+
+        }
+
+        @Override
+        public void setText(final int row, final int col, final String text) {
+            super.setText(row, col, text == null ? "\u00a0" : text);
+        }
+
+        @Override
+        public void reset(final ResourceCollection<Book> resources) {
+            setVisible(resources.size() != 0);
+            resizeRows(resources.size());
+
+            int rowCount = 0;
+            // calculate the display permission only once !!!
+            final Display display = display();
+            for (final Book book : resources) {
+                getRowFormatter().setStyleName(rowCount,
+                                               rowCount % 2 == 0
+                                                       ? "books-even"
+                                                       : "books-odd");
+                setText(rowCount, 0, book.key());
+                setWidget(rowCount, 1, createHyperlink(display,
+                                                       book.title,
+                                                       book));
+                setText(rowCount, 2, book.author);
+                setText(rowCount, 3, book.billNo);
+                setText(rowCount, 4, book.clasNo);
+                setText(rowCount, 5, book.cost);
+                setText(rowCount, 6, book.edition);
+                setText(rowCount, 7, book.isbn);
+                setText(rowCount, 8, book.keywords);
+                setText(rowCount, 9, book.pages);
+                setText(rowCount, 10, book.placePublisher);
+                setText(rowCount, 11, book.source);
+                setText(rowCount, 12, book.status);
+                setText(rowCount, 13, book.volume);
+                setText(rowCount, 14, book.remarks);
+                setText(rowCount, 15, null);
+                rowCount++;
+            }
+        }
+    }
+
     private static class BookScreen extends ResourceScreen<Book> {
 
         protected BookScreen(final LoadingNotice loadingNotice,
@@ -255,9 +396,7 @@ public class Books implements EntryPoint {
                             new ResourceCollectionNavigationWithCSVExport<Book>(loadingNotice,
                                     factory,
                                     getTextController),
-                            new ResourceCollectionListing<Book>(session,
-                                    factory,
-                                    getTextController)),
+                            new BookListing(session, factory)),
                     new DefaultResourceActionPanel<Book>(getTextController,
                             bindings,
                             session,
