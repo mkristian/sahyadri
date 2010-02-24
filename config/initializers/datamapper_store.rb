@@ -4,6 +4,7 @@
 # cleanup can be a problem. jruby uses soft-references for the cache so
 # memory cleanup with jruby is no problem.
 require 'ixtlan/session'
+
 ActionController::Base.session_store = :datamapper_store
 ActionController::Base.session = {
   :cache       => true,

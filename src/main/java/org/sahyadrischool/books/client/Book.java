@@ -10,16 +10,17 @@ import com.google.gwt.xml.client.Element;
 import de.saumya.gwt.persistence.client.Repository;
 import de.saumya.gwt.persistence.client.ResourceFactory;
 import de.saumya.gwt.persistence.client.ResourceWithID;
-import de.saumya.gwt.session.client.model.User;
-import de.saumya.gwt.session.client.model.UserFactory;
+import de.saumya.gwt.session.client.models.User;
+import de.saumya.gwt.session.client.models.UserFactory;
 
 public class Book extends ResourceWithID<Book> {
 
     private final UserFactory userFactory;
 
     protected Book(final Repository repository,
-            final ResourceFactory<Book> factory, final UserFactory userFactory) {
-        super(repository, factory);
+            final ResourceFactory<Book> factory, final UserFactory userFactory,
+            final int id) {
+        super(repository, factory, id);
         this.userFactory = userFactory;
     }
 

@@ -18,10 +18,8 @@ Rails::Initializer.run do |config|
   # deactive active_record
   config.frameworks -= [ :active_record, :active_resource ]
   
-  config.gem 'logging'
-  config.gem 'slf4r'
-  config.gem 'rspec-rails', :lib => false
-  config.gem 'rspec', :lib => false
+  config.gem 'rspec-rails', :lib => false, :version => '1.2.9'
+  config.gem 'rspec', :lib => false, :version => '1.2.9'
   config.gem 'addressable', :lib => 'addressable/uri'
   config.gem 'dm-core', :version => DM_VERSION
   config.gem 'dm-migrations', :version => DM_VERSION
@@ -29,9 +27,8 @@ Rails::Initializer.run do |config|
   config.gem 'dm-validations', :version => DM_VERSION
   config.gem 'dm-aggregates', :version => DM_VERSION
   config.gem 'dm-lucene-adapter'
-  config.gem 'do_sqlite3'
-  config.gem 'datamapper4rails'
-  config.gem 'ixtlan'
+  config.gem 'do_sqlite3', :version => '0.10.1.1'
+  config.gem 'ixtlan', :version => '0.2.4'
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers

@@ -4,7 +4,7 @@ module Ixtlan
     USER = "User"
     GROUP = "Group"
     LOCALE = "Locale"
-    TEXT = "Blah"
+    TEXT = "I18nText"
     CONFIGURATION = "Configuration"
   end
 end

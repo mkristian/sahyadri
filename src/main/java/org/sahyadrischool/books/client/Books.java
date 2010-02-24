@@ -18,6 +18,7 @@ import de.saumya.gwt.translation.common.client.GetTextController;
 import de.saumya.gwt.translation.common.client.route.HasPathFactory;
 import de.saumya.gwt.translation.common.client.route.PathFactory;
 import de.saumya.gwt.translation.common.client.widget.DefaultResourceActionPanel;
+import de.saumya.gwt.translation.common.client.widget.HyperlinkFactory;
 import de.saumya.gwt.translation.common.client.widget.LoadingNotice;
 import de.saumya.gwt.translation.common.client.widget.ResourceBindings;
 import de.saumya.gwt.translation.common.client.widget.ResourceCollectionNavigationWithCSVExport;
@@ -28,9 +29,9 @@ import de.saumya.gwt.translation.common.client.widget.ResourceHeaderPanel;
 import de.saumya.gwt.translation.common.client.widget.ResourcePanel;
 import de.saumya.gwt.translation.common.client.widget.ResourceScreen;
 import de.saumya.gwt.translation.gui.client.GUIContainer;
-import de.saumya.gwt.translation.gui.client.IntegerTextBoxBinding;
-import de.saumya.gwt.translation.gui.client.TextAreaBinding;
-import de.saumya.gwt.translation.gui.client.TextBoxBinding;
+import de.saumya.gwt.translation.gui.client.bindings.IntegerTextBoxBinding;
+import de.saumya.gwt.translation.gui.client.bindings.TextAreaBinding;
+import de.saumya.gwt.translation.gui.client.bindings.TextBoxBinding;
 
 public class Books implements EntryPoint {
 
@@ -386,7 +387,8 @@ public class Books implements EntryPoint {
                 final GetTextController getTextController,
                 final BookFactory factory, final Session session,
                 final ResourceBindings<Book> bindings,
-                final ResourceNotifications notifications) {
+                final ResourceNotifications notifications,
+                final HyperlinkFactory hyperlinkFactory) {
             super(loadingNotice,
                     factory,
                     session,
@@ -401,8 +403,10 @@ public class Books implements EntryPoint {
                             bindings,
                             session,
                             factory,
-                            notifications),
-                    notifications);
+                            notifications,
+                            hyperlinkFactory),
+                    notifications,
+                    hyperlinkFactory);
         }
     }
 
@@ -419,7 +423,8 @@ public class Books implements EntryPoint {
                                                      factory,
                                                      container.session,
                                                      new ResourceBindings<Book>(),
-                                                     container.notifications),
+                                                     container.notifications,
+                                                     container.hyperlinkFactory),
                                              "books");
     }
 }

@@ -22,12 +22,6 @@
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
-      <artifactId>extlib</artifactId>
-      <version>0.9.14</version>
-      <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
       <artifactId>addressable</artifactId>
       <version>2.1.1</version>
       <type>gem</type>
@@ -37,13 +31,6 @@
       <artifactId>dm-core</artifactId>
       <version>0.10.2</version>
       <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>dm-lucene-adapter</artifactId>
-      <version>0.1.2</version>
-      <type>gem</type>
-      <classifier>java</classifier>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
@@ -71,9 +58,10 @@
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
-      <artifactId>rspec</artifactId>
-      <version>1.2.9</version>
+      <artifactId>do_sqlite3</artifactId>
+      <version>0.10.1.1</version>
       <type>gem</type>
+      <classifier>java</classifier>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
@@ -83,76 +71,26 @@
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
+      <artifactId>rspec</artifactId>
+      <version>1.2.9</version>
+      <type>gem</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
       <artifactId>rspec-rails</artifactId>
       <version>1.2.9</version>
       <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>slf4r</artifactId>
-      <version>0.2.0</version>
-      <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>little-plugger</artifactId>
-      <version>1.1.1</version>
-      <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>lockfile</artifactId>
-      <version>1.4.3</version>
-      <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>logging</artifactId>
-      <version>1.2.3</version>
-      <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>rack-datamapper</artifactId>
-      <version>0.2.5</version>
-      <type>gem</type>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>rake</artifactId>
       <version>0.8.7</version>
       <type>gem</type>
-    </dependency>
-<!--
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>data_objects</artifactId>
-      <version>0.10.1</version>
-      <type>gem</type>
+      <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>do_jdbc</artifactId>
-      <version>0.10.1</version>
-      <classifier>java</classifier>
-      <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>do_sqlite3</artifactId>
-      <version>0.10.1</version>
-      <classifier>java</classifier>
-      <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>jdbc-sqlite3</artifactId>
-      <version>3.6.3.054</version>
-      <type>gem</type>
-    </dependency>
--->
-
-   <dependency>
       <groupId>org.xerial</groupId>
       <artifactId>sqlite-jdbc</artifactId>
       <version>3.6.10</version>
@@ -163,20 +101,51 @@
         </exclusion>
       </exclusions>
     </dependency>
-
     <dependency>
       <groupId>rubygems</groupId>
-      <artifactId>datamapper4rails</artifactId>
-      <version>0.4.0</version>
+      <artifactId>rack-datamapper</artifactId>
+      <version>0.2.5</version>
       <type>gem</type>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>ixtlan</artifactId>
-      <version>0.2.2</version>
+      <version>0.2.4</version>
       <type>gem</type>
     </dependency>
-
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-lucene-adapter</artifactId>
+      <version>0.1.2</version>
+      <type>gem</type>
+      <classifier>java</classifier>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>rails</artifactId>
+      <version>2.3.5</version>
+      <type>gem</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>jdbc-sqlite3</artifactId>
+      <version>3.6.3.054</version>
+      <type>gem</type>
+    </dependency>
+<!--
+    <dependency>
+      <groupId>org.xerial</groupId>
+      <artifactId>sqlite-jdbc</artifactId>
+      <version>3.6.10</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.xerial.thirdparty</groupId>
+          <artifactId>nestedvm</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+-->
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-core</artifactId>
@@ -191,7 +160,7 @@
     <dependency>
       <groupId>de.saumya.gwt.translation</groupId>
       <artifactId>gui</artifactId>
-      <version>0.3.0-SNAPSHOT</version> 
+      <version>0.4.0</version> 
     </dependency>
   </dependencies>
   <pluginRepositories>
@@ -319,7 +288,7 @@
     <!-- this allows to configure it for rails-maven-plugin as well jruby-maven-plugin and gem-maven-plugin -->
     <jruby.gem.home>${project.build.directory}/rubygems</jruby.gem.home>
     <jruby.gem.path>${project.build.directory}/rubygems</jruby.gem.path>
-    <jruby.plugins.version>0.8.0</jruby.plugins.version>
+    <jruby.plugins.version>0.9.1</jruby.plugins.version>
     <jruby.fork>true</jruby.fork>
   </properties>
 </project>
