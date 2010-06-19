@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::UnknownAction, :with => :page_not_found
   rescue_from ActionController::MethodNotAllowed, :with => :page_not_found
   rescue_from ActionController::NotImplemented, :with => :page_not_found
+  rescue_from ActionController::InvalidAuthenticityToken, :with => :stale_resource
 
   # have nice stacktraces in development mode
   unless consider_all_requests_local
