@@ -13,11 +13,6 @@
   <%=h @user.email %>
 </p>
 
-<p>
-  <b>Language:</b>
-  <%=h @user.language %>
-</p>
-
 
 <%= link_to 'Edit', edit_user_path(@user.key) %> |
 <%= link_to 'Back', users_path %>

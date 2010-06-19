@@ -7,7 +7,7 @@
   <% if controller.send :current_user %>
   <meta http-equiv="refresh" content="<%= controller.send(:session_timeout) * 60 %>" />
   <% end -%>
-  <title>Users: <%= controller.action_name %></title>
+  <title>Domains: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'scaffold' %>
 </head>
 <body>
