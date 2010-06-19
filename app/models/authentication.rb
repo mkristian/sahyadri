@@ -1,1 +1,3 @@
-class Authentication < Ixtlan::Models::Authentication; end
+class Authentication
+  include Ixtlan::Models::Authentication
+end

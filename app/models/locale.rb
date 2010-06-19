@@ -1,1 +1,3 @@
-class Locale < Ixtlan::Models::Locale; end
+class Locale
+  include Ixtlan::Models::Locale
+end

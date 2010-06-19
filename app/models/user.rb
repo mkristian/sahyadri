@@ -1,7 +1,3 @@
-class User < Ixtlan::Models::User
-
-  def self.repository(name = nil, &block)
-    super(:default, &block)
-  end
-
+class User
+  include Ixtlan::Models::User
 end

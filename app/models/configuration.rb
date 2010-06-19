@@ -1,1 +1,3 @@
-class Configuration < Ixtlan::Models::Configuration; end
+class Configuration
+  include Ixtlan::Models::Configuration
+end

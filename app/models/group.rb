@@ -1,1 +1,3 @@
-class Group < Ixtlan::Models::Group; end
+class Group
+  include Ixtlan::Models::Group
+end

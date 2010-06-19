@@ -3,37 +3,37 @@ class Book
 
   property :id, Serial
 
-  property :author, String, :nullable => true, :format => /^[^<">]*$/, :length => 64
+  property :author, String, :required => false, :format => /^[^<">]*$/, :length => 64
 
-  property :title, String, :nullable => false, :format => /^[^<>]*$/, :length => 192
+  property :title, String, :required => true, :format => /^[^<>]*$/, :length => 192
 
-  property :edition, String, :nullable => true, :format => /^[^<'">]*$/, :length => 64
+  property :edition, String, :required => false, :format => /^[^<'">]*$/, :length => 64
 
-  property :place_publisher, String, :nullable => true, :format => /^[^">]*$/, :length => 64
+  property :place_publisher, String, :required => false, :format => /^[^">]*$/, :length => 64
 
-  property :status, String, :nullable => true, :format => /^[^<'&">]*$/, :length => 16
+  property :status, String, :required => false, :format => /^[^<'&">]*$/, :length => 16
 
-  property :clas_no, String, :nullable => true, :format => /^[^<&">]*$/, :length => 32
+  property :clas_no, String, :required => false, :format => /^[^<&">]*$/, :length => 32
 
-  property :year, Integer, :nullable => false 
+  property :year, Integer, :required => true 
 
-  property :pages, String, :nullable => true, :format => /^[^<'">]*$/, :length => 48
+  property :pages, String, :required => false, :format => /^[^<'">]*$/, :length => 48
 
-  property :volume, String, :nullable => true, :format => /^[^<'">]*$/, :length => 16
+  property :volume, String, :required => false, :format => /^[^<'">]*$/, :length => 16
 
-  property :source, String, :nullable => true, :format => /^[^<">]*$/, :length => 64
+  property :source, String, :required => false, :format => /^[^<">]*$/, :length => 64
 
-  property :cost, String, :nullable => true, :format => /^[^<'">]*$/, :length => 64
+  property :cost, String, :required => false, :format => /^[^<'">]*$/, :length => 64
 
-  property :bill_no, String, :nullable => true, :format => /^[^<'">]*$/, :length => 64
+  property :bill_no, String, :required => false, :format => /^[^<'">]*$/, :length => 64
 
-  property :isbn, String, :nullable => true, :format => /^[^<'">]*$/, :length => 32
+  property :isbn, String, :required => false, :format => /^[^<'">]*$/, :length => 32
 
-  property :keywords, String, :nullable => true, :format => /^[^<">]*$/, :length => 128
+  property :keywords, String, :required => false, :format => /^[^<">]*$/, :length => 128
 
-  property :remarks, Text, :nullable => true, :format => /^[^<">]*$/
+  property :remarks, Text, :required => false, :format => /^[^<">]*$/
 
-  property :total, Text, :nullable => false, :format => /^[^<">]*$/
+  property :total, Text, :required => true, :format => /^[^<">]*$/
 
   before :valid? do
     attr = attributes
@@ -48,16 +48,21 @@ class Book
 
   timestamps :at
 
-  modified_by "User"
+  modified_by "User", nil, { :repository => :default}
 
   def date
     created_at.strftime("%d-%m-%Y") if created_at rescue created_at
   end
 
-  alias :to_x :to_xml_document
-  def to_xml_document(opts, doc = nil)
-    opts.merge!({:methods => [:updated_by], :exclude => [:updated_by_id]})
-    to_x(opts, doc)
+  if protected_instance_methods.find {|m| m == 'to_x'}.nil?
+    
+    protected
+    
+    alias :to_x :to_xml_document
+    def to_xml_document(opts, doc = nil)
+      opts.merge!({:methods => [:updated_by], :exclude => [:updated_by_id]})
+      to_x(opts, doc)
+    end
   end
 
   def self.repository(name = nil, &block)
