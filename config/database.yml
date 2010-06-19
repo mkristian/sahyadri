@@ -3,6 +3,10 @@
 development:
   repositories:
     default:
+#      adapter: hibernate
+#      dialect: H2
+#      username: sa
+#      url: jdbc:h2:db/development.h2
       adapter: sqlite3
       database: db/development.sqlite3
       pool: 5

@@ -1,34 +1,33 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  DM_VERSION = '0.10.2'
+  DM_VERSION = '1.0.0'
   # add middleware
   #config.middleware.use 'Ixtlan::CmsScript'
   config.middleware.use 'Ixtlan::ChildPath', 'books'
   config.middleware.use 'Rack::Deflater'
+  config.middleware.use 'DataMapper::IdentityMaps', :books
   config.middleware.use 'DataMapper::IdentityMaps'
   config.middleware.use 'DataMapper::RestfulTransactions'
   
   # deactive active_record
   config.frameworks -= [ :active_record, :active_resource ]
   
-  config.gem 'rspec-rails', :lib => false, :version => '1.2.9'
-  config.gem 'rspec', :lib => false, :version => '1.2.9'
-  config.gem 'addressable', :lib => 'addressable/uri'
   config.gem 'dm-core', :version => DM_VERSION
   config.gem 'dm-migrations', :version => DM_VERSION
   config.gem 'dm-timestamps', :version => DM_VERSION
   config.gem 'dm-validations', :version => DM_VERSION
   config.gem 'dm-aggregates', :version => DM_VERSION
+  config.gem 'dm-transactions', :version => DM_VERSION
+  config.gem 'dm-sqlite-adapter', :version => DM_VERSION
   config.gem 'dm-lucene-adapter'
-  config.gem 'do_sqlite3', :version => '0.10.1.1'
-  config.gem 'ixtlan', :version => '0.2.4'
+  config.gem 'ixtlan', :version => '0.4.0.pre3'
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
