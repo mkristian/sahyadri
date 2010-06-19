@@ -28,6 +28,12 @@ end.each { |t| remove_task(t.name) }
 
 namespace :db do
 
+  desc 'Load the seed data from db/seeds.rb'
+  task :seed => :environment do
+    seed_file = File.join(Rails.root, 'db', 'seeds.rb')
+    load(seed_file) if File.exist?(seed_file)
+  end
+
   desc 'Perform automigration'
   task :automigrate => :environment do
     FileList["app/models/**/*.rb"].each do |model|

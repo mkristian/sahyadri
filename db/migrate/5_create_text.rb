@@ -1,8 +1,8 @@
 require 'config/initializers/ixtlan.rb'
 require 'ixtlan/rails/migrations'
-migration 2, :create_configuration do
+migration 5, :create_text do
   up do
-    Ixtlan::Rails::Migrations.create_configuration
+    Ixtlan::Rails::Migrations.create_text
   end
 
   down do

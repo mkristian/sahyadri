@@ -1,8 +1,8 @@
 require 'config/initializers/ixtlan.rb'
 require 'ixtlan/rails/migrations'
-migration 2, :create_configuration do
+migration 3, :create_locale do
   up do
-    Ixtlan::Rails::Migrations.create_configuration
+    Ixtlan::Rails::Migrations.create_locale
   end
 
   down do
