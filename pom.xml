@@ -8,78 +8,83 @@
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>sahyadri school books search</name>
-  <url>http://github.com/mkristian/rails-templates/blob/master/datamapper.rb</url>
+  <url>http://github.com/mkristian/sahyadri</url>
   <dependencies>
     <dependency>
       <groupId>org.jruby.rack</groupId>
       <artifactId>jruby-rack</artifactId>
-      <version>0.9.5</version>
+      <version>1.0.1</version>
     </dependency>
     <dependency>
       <groupId>org.jruby</groupId>
       <artifactId>jruby-complete</artifactId>
-      <version>1.4.0</version>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>addressable</artifactId>
-      <version>2.1.1</version>
-      <type>gem</type>
+      <version>1.5.1</version>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>dm-core</artifactId>
-      <version>0.10.2</version>
+      <version>${datamapper.version}</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>extlib</artifactId>
+      <version>0.9.15</version>
       <type>gem</type>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>dm-validations</artifactId>
-      <version>0.10.2</version>
+      <version>${datamapper.version}</version>
       <type>gem</type>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>dm-timestamps</artifactId>
-      <version>0.10.2</version>
+      <version>${datamapper.version}</version>
       <type>gem</type>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>dm-migrations</artifactId>
-      <version>0.10.2</version>
+      <version>${datamapper.version}</version>
       <type>gem</type>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>dm-aggregates</artifactId>
-      <version>0.10.2</version>
+      <version>${datamapper.version}</version>
       <type>gem</type>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
-      <artifactId>do_sqlite3</artifactId>
-      <version>0.10.1.1</version>
+      <artifactId>dm-transactions</artifactId>
+      <version>${datamapper.version}</version>
       <type>gem</type>
-      <classifier>java</classifier>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-sqlite-adapter</artifactId>
+      <version>${datamapper.version}</version>
+      <type>gem</type>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>rack</artifactId>
-      <version>1.0.1</version>
+      <version>1.1.0</version>
       <type>gem</type>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>rspec</artifactId>
-      <version>1.2.9</version>
+      <version>1.3.0</version>
       <type>gem</type>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>rspec-rails</artifactId>
-      <version>1.2.9</version>
+      <version>1.3.0</version>
       <type>gem</type>
       <scope>test</scope>
     </dependency>
@@ -104,29 +109,36 @@
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>rack-datamapper</artifactId>
-      <version>0.2.5</version>
+      <version>0.3.2</version>
       <type>gem</type>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>ixtlan</artifactId>
-      <version>0.2.4</version>
+      <version>0.4.0.pre3</version>
       <type>gem</type>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>dm-lucene-adapter</artifactId>
-      <version>0.1.2</version>
+      <version>0.2.0-SNAPSHOT</version>
       <type>gem</type>
       <classifier>java</classifier>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>rails</artifactId>
-      <version>2.3.5</version>
+      <version>2.3.8</version>
       <type>gem</type>
-      <scope>provided</scope>
     </dependency>
+<!--
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-hibernate-adapter</artifactId>
+      <version>0.1-SNAPSHOT</version>
+      <type>gem</type>
+    </dependency>
+-->
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>jdbc-sqlite3</artifactId>
@@ -149,7 +161,7 @@
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-core</artifactId>
-      <version>3.0.0</version>
+      <version>3.0.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.gwt</groupId>
@@ -158,6 +170,12 @@
       <scope>provided</scope>
     </dependency> 
     <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-servlet</artifactId>
+      <version>${gwt.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
       <groupId>de.saumya.gwt.translation</groupId>
       <artifactId>gui</artifactId>
       <version>0.4.0</version> 
@@ -165,57 +183,43 @@
   </dependencies>
   <pluginRepositories>
     <pluginRepository>
-      <id>saumya</id>
-      <name>Saumyas Plugins</name>
-      <url>http://mojo.saumya.de</url>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>http://oss.sonatype.org/content/repositories/snapshots</url>
     </pluginRepository>
   </pluginRepositories>
-
   <repositories>
     <repository>
       <id>saumya</id>
-      <name>Saumyas Plugins</name>
       <url>http://mojo.saumya.de</url>
       <snapshots>
-       <enabled>false</enabled>
+       <enabled>true</enabled>
       </snapshots>
     </repository>
     <repository>
-      <id>gemcutter</id>
-      <releases>
-	<updatePolicy>never</updatePolicy>
-	<checksumPolicy>ignore</checksumPolicy>
-      </releases>
+      <id>rubygems</id>
+      <url>http://gems.saumya.de/releases</url>
+    </repository>
+    <repository>
+      <id>rubygems-snapshots</id>
+      <url>http://gems.saumya.de/snapshots</url>    
       <snapshots>
-	<enabled>false</enabled>
+        <enabled>true</enabled>
       </snapshots>
-      <url>http://www.gemcutter.org/gems</url>
-      <layout>gem</layout>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
     </repository>
   </repositories>
 
   <build>
     <outputDirectory>war/WEB-INF/classes</outputDirectory> 
-    <plugins>
+    <plugins> 
       <plugin>
         <groupId>de.saumya.mojo</groupId>
-        <artifactId>rails-maven-plugin</artifactId>
-	<version>${jruby.plugins.version}</version> 
-	<configuration>
-          <warSourceDirectory>war</warSourceDirectory>
-          <includeDirs>db</includeDirs>
-          <excludeDirs>db/migrate</excludeDirs>
-        </configuration>
-        <executions>
-           <execution>
-            <id>rail-war</id>
-            <goals>
-              <goal>rails-freeze-gems</goal>
-              <goal>gems-unpack-dependencies</goal>
-              <goal>war</goal>
-            </goals>
-           </execution>
-        </executions>
+        <artifactId>gem-maven-plugin</artifactId>
+        <version>${jruby.plugins.version}</version>
+        <extensions>true</extensions>
       </plugin>
       <plugin>
         <groupId>de.saumya.mojo</groupId>
@@ -224,19 +228,13 @@
       </plugin>
       <plugin>
         <groupId>de.saumya.mojo</groupId>
-        <artifactId>gem-maven-plugin</artifactId>
-	<version>${jruby.plugins.version}</version>
-	<extensions>true</extensions>
-	<executions>
-	  <execution>
-	    <phase>initialize</phase>
-	  </execution>
-	</executions>
+        <artifactId>rails2-maven-plugin</artifactId>
+        <version>${jruby.plugins.version}</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
         <configuration>
           <runTarget>org.sahyadrischool.books.Books/Books.html</runTarget>
         </configuration>
@@ -258,6 +256,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
+	<version>2.0.2</version>
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
@@ -270,6 +269,38 @@
         <configuration>
           <warSourceDirectory>war</warSourceDirectory>
           <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+          <webResources>
+            <resource>
+              <directory>public</directory>
+            </resource>
+            <resource>
+              <directory>.</directory>
+              <targetPath>WEB-INF</targetPath>
+              <includes>
+                <include>Gemfile</include>
+                <include>app/**</include>
+                <include>config/**</include>
+                <include>lib/**</include>
+                <include>vendor/**</include>
+		<!--
+		    this might be not a good idea for production and it 
+		    will not work when running the application from a 
+		    packed war file but for testing this should be OK
+		-->
+                <include>db/*sqlite3</include>
+                <include>db/lucene/books/*</include>
+              </includes>
+            </resource>
+	    <!--
+		if you freeze your rails and unpack your gems you need to
+		comment/remove the next section to avoid ending up with
+		two sets of gems inside the war file
+	    -->
+            <resource>
+              <directory>${jruby.gem.path}</directory>
+              <targetPath>WEB-INF/gems</targetPath>
+            </resource>
+          </webResources>
         </configuration>
       </plugin>
       <plugin>
@@ -284,11 +315,12 @@
     </plugins>
   </build>
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jruby.plugins.version>0.20.0-SNAPSHOT</jruby.plugins.version>
     <gwt.version>1.7.1</gwt.version>
+    <datamapper.version>1.0.0</datamapper.version>
     <!-- this allows to configure it for rails-maven-plugin as well jruby-maven-plugin and gem-maven-plugin -->
-    <jruby.gem.home>${project.build.directory}/rubygems</jruby.gem.home>
-    <jruby.gem.path>${project.build.directory}/rubygems</jruby.gem.path>
-    <jruby.plugins.version>0.9.1</jruby.plugins.version>
-    <jruby.fork>true</jruby.fork>
+    <jruby.gem.home>${project.build.directory}/wargems</jruby.gem.home>
+    <jruby.gem.path>${project.build.directory}/wargems</jruby.gem.path>
   </properties>
 </project>
