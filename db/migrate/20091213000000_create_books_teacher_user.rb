@@ -1,7 +1,7 @@
 migration 20091213000000, :create_books_teacher_user do
   up do
     root = User.first
-    u = User.new(:login => 'books', :email => 'books@example.com', :name => 'Books Admin', :language => 'en', :id => 3, :current_user => root)
+    u = User.new(:login => 'librarian', :email => 'librarian@example.com', :name => 'Librarian', :language => 'en', :id => 3, :current_user => root)
     u.reset_password
     u.save
     g = Group.create(:name => 'books', :current_user => root)
