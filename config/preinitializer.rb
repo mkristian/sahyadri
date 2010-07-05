@@ -18,10 +18,10 @@ module Ixtlan
       result
     end
 
-    def self.load(dir, file)
-      symbolize_keys(YAML::load(ERB.new(IO.read(File.join(dir, file))).result))
+    def self.load(file)
+      symbolize_keys(YAML::load(ERB.new(IO.read(file)).result)) if File.exists?(file)
     end
   end
 end
 
-CONFIG = Ixtlan::Configurator.load(File.dirname(__FILE__), 'global.yml')
+CONFIG = Ixtlan::Configurator.load(File.join(File.dirname(__FILE__), 'global.yml')) || {}

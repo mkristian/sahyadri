@@ -1,19 +1,16 @@
 module Ixtlan
   module Models
-    AUTHENTICATION = "::Authentication"
-    USER = "::User"
-    GROUP = "::Group"
-    LOCALE = "::Locale"
-    DOMAIN = "::Domain"
-    TEXT = "::I18nText"
-    CONFIGURATION = "::Configuration"
+    # overwrite configuration class
+    # CONFIGURATION = "::MyConfiguration"
+    # set this to nil to switch off Audit logs into the database
+    # AUDIT = nil
   end
 end
+require 'ixtlan/models'
 require 'ixtlan/modified_by'
 if ENV['RAILS_ENV']
   require 'i18n_text'
   require 'book'
-  require 'models'
   require 'ixtlan/rails/error_handling'
   require 'ixtlan/rails/audit'
   require 'ixtlan/rails/session_timeout'

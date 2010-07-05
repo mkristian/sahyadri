@@ -4,11 +4,11 @@
 package org.sahyadrischool.books.client;
 
 import de.saumya.gwt.persistence.client.Repository;
-import de.saumya.gwt.persistence.client.ResourceFactoryWithID;
+import de.saumya.gwt.persistence.client.ResourceFactory;
 import de.saumya.gwt.persistence.client.ResourceNotifications;
 import de.saumya.gwt.session.client.models.UserFactory;
 
-public class BookFactory extends ResourceFactoryWithID<Book> {
+public class BookFactory extends ResourceFactory<Book> {
 
     private final UserFactory userFactory;
 
@@ -30,7 +30,7 @@ public class BookFactory extends ResourceFactoryWithID<Book> {
     }
 
     @Override
-    protected Book newResource(final int id) {
+    public Book newResource(final int id) {
         return new Book(this.repository, this, this.userFactory, id);
     }
 

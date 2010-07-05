@@ -8,18 +8,16 @@ import java.sql.Timestamp;
 import com.google.gwt.xml.client.Element;
 
 import de.saumya.gwt.persistence.client.Repository;
-import de.saumya.gwt.persistence.client.ResourceFactory;
-import de.saumya.gwt.persistence.client.ResourceWithID;
+import de.saumya.gwt.persistence.client.Resource;
 import de.saumya.gwt.session.client.models.User;
 import de.saumya.gwt.session.client.models.UserFactory;
 
-public class Book extends ResourceWithID<Book> {
+public class Book extends Resource<Book> {
 
     private final UserFactory userFactory;
 
-    protected Book(final Repository repository,
-            final ResourceFactory<Book> factory, final UserFactory userFactory,
-            final int id) {
+    protected Book(final Repository repository, final BookFactory factory,
+            final UserFactory userFactory, final int id) {
         super(repository, factory, id);
         this.userFactory = userFactory;
     }
@@ -45,7 +43,6 @@ public class Book extends ResourceWithID<Book> {
 
     @Override
     protected void appendXml(final StringBuilder buf) {
-        super.appendXml(buf);
         appendXml(buf, "author", this.author);
         appendXml(buf, "title", this.title);
         appendXml(buf, "edition", this.edition);
@@ -67,8 +64,7 @@ public class Book extends ResourceWithID<Book> {
     }
 
     @Override
-    protected void fromXml(final Element root) {
-        super.fromXml(root);
+    protected void fromElement(final Element root) {
         this.author = getString(root, "author");
         this.title = getString(root, "title");
         this.edition = getString(root, "edition");
@@ -90,28 +86,24 @@ public class Book extends ResourceWithID<Book> {
     }
 
     @Override
-    public void toString(final StringBuilder buf) {
-        super.toString(buf);
-        buf.append(":author => ").append(this.author);
-        buf.append(", :title => ").append(this.title);
-        buf.append(", :edition => ").append(this.edition);
-        buf.append(", :place_publisher => ").append(this.placePublisher);
-        buf.append(", :status => ").append(this.status);
-        buf.append(", :clas_no => ").append(this.clasNo);
-        buf.append(", :year => ").append(this.year);
-        buf.append(", :pages => ").append(this.pages);
-        buf.append(", :volume => ").append(this.volume);
-        buf.append(", :source => ").append(this.source);
-        buf.append(", :cost => ").append(this.cost);
-        buf.append(", :bill_no => ").append(this.billNo);
-        buf.append(", :isbn => ").append(this.isbn);
-        buf.append(", :keywords => ").append(this.keywords);
-        buf.append(", :remarks => ").append(this.remarks);
-        buf.append(", :updated_at => ").append(this.updatedAt);
-        if (this.updatedBy != null) {
-            buf.append(", :updated_by => ");
-            this.updatedBy.toString(buf);
-        }
+    public void toString(final String indent, final StringBuilder buf) {
+        toString(indent, buf, "author", this.author);
+        toString(indent, buf, "title", this.title);
+        toString(indent, buf, "edition", this.edition);
+        toString(indent, buf, "place_publisher", this.placePublisher);
+        toString(indent, buf, "status", this.status);
+        toString(indent, buf, "clas_no", this.clasNo);
+        toString(indent, buf, "year", this.year);
+        toString(indent, buf, "pages", this.pages);
+        toString(indent, buf, "volume", this.volume);
+        toString(indent, buf, "source", this.source);
+        toString(indent, buf, "cost", this.cost);
+        toString(indent, buf, "bill", this.billNo);
+        toString(indent, buf, "isbn", this.isbn);
+        toString(indent, buf, "keywords", this.keywords);
+        toString(indent, buf, "remarks", this.remarks);
+        toString(indent, buf, "updated_at", this.updatedAt);
+        toString(indent, buf, "updated_by", this.updatedBy);
     }
 
     @Override

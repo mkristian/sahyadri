@@ -11,15 +11,15 @@ import com.google.gwt.user.client.ui.Widget;
 
 import de.saumya.gwt.persistence.client.ResourceCollection;
 import de.saumya.gwt.persistence.client.ResourceFactory;
-import de.saumya.gwt.persistence.client.ResourceNotifications;
 import de.saumya.gwt.session.client.Session;
 import de.saumya.gwt.session.client.Session.Action;
 import de.saumya.gwt.translation.common.client.GetTextController;
 import de.saumya.gwt.translation.common.client.route.HasPathFactory;
 import de.saumya.gwt.translation.common.client.route.PathFactory;
-import de.saumya.gwt.translation.common.client.widget.DefaultResourceActionPanel;
 import de.saumya.gwt.translation.common.client.widget.HyperlinkFactory;
 import de.saumya.gwt.translation.common.client.widget.LoadingNotice;
+import de.saumya.gwt.translation.common.client.widget.NotificationListeners;
+import de.saumya.gwt.translation.common.client.widget.ResourceActionPanel;
 import de.saumya.gwt.translation.common.client.widget.ResourceBindings;
 import de.saumya.gwt.translation.common.client.widget.ResourceCollectionNavigationWithCSVExport;
 import de.saumya.gwt.translation.common.client.widget.ResourceCollectionPanel;
@@ -328,10 +328,10 @@ public class Books implements EntryPoint {
             switch (display) {
             case EDIT:
                 return new Hyperlink(text,
-                        this.pathFactory.editPath(resource.key()));
+                        this.pathFactory.editPath(resource.id));
             case SHOW:
                 return new Hyperlink(text,
-                        this.pathFactory.showPath(resource.key()));
+                        this.pathFactory.showPath(resource.id));
             case DISPLAY:
                 return new Label(text);
             default:
@@ -358,7 +358,7 @@ public class Books implements EntryPoint {
                                                rowCount % 2 == 0
                                                        ? "books-even"
                                                        : "books-odd");
-                setText(rowCount, 0, book.key());
+                setText(rowCount, 0, "" + book.id);
                 setWidget(rowCount, 1, createHyperlink(display,
                                                        book.title,
                                                        book));
@@ -375,6 +375,7 @@ public class Books implements EntryPoint {
                 setText(rowCount, 12, book.status);
                 setText(rowCount, 13, book.volume);
                 setText(rowCount, 14, book.remarks);
+                // dummy row which is overlayed by the scrollbar
                 setText(rowCount, 15, null);
                 rowCount++;
             }
@@ -387,7 +388,7 @@ public class Books implements EntryPoint {
                 final GetTextController getTextController,
                 final BookFactory factory, final Session session,
                 final ResourceBindings<Book> bindings,
-                final ResourceNotifications notifications,
+                final NotificationListeners listeners,
                 final HyperlinkFactory hyperlinkFactory) {
             super(loadingNotice,
                     factory,
@@ -399,13 +400,15 @@ public class Books implements EntryPoint {
                                     factory,
                                     getTextController),
                             new BookListing(session, factory)),
-                    new DefaultResourceActionPanel<Book>(getTextController,
+                    new ResourceActionPanel<Book>(getTextController,
                             bindings,
                             session,
                             factory,
-                            notifications,
-                            hyperlinkFactory),
-                    notifications,
+                            listeners,
+                            hyperlinkFactory,
+                            true,
+                            true),
+                    listeners,
                     hyperlinkFactory);
         }
     }
@@ -423,7 +426,7 @@ public class Books implements EntryPoint {
                                                      factory,
                                                      container.session,
                                                      new ResourceBindings<Book>(),
-                                                     container.notifications,
+                                                     container.listeners,
                                                      container.hyperlinkFactory),
                                              "books");
     }

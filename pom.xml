@@ -115,7 +115,7 @@
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>ixtlan</artifactId>
-      <version>0.4.0.pre3</version>
+      <version>0.4.0.pre4</version>
       <type>gem</type>
     </dependency>
     <dependency>
@@ -178,7 +178,7 @@
     <dependency>
       <groupId>de.saumya.gwt.translation</groupId>
       <artifactId>gui</artifactId>
-      <version>0.4.0</version> 
+      <version>${restful.gwt.version}</version>
     </dependency>
   </dependencies>
   <pluginRepositories>
@@ -193,7 +193,7 @@
       <id>saumya</id>
       <url>http://mojo.saumya.de</url>
       <snapshots>
-       <enabled>true</enabled>
+	<enabled>true</enabled>
       </snapshots>
     </repository>
     <repository>
@@ -213,7 +213,7 @@
   </repositories>
 
   <build>
-    <outputDirectory>war/WEB-INF/classes</outputDirectory> 
+    <outputDirectory>war/WEB-INF/classes</outputDirectory>
     <plugins> 
       <plugin>
         <groupId>de.saumya.mojo</groupId>
@@ -316,6 +316,7 @@
   </build>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <restful.gwt.version>0.5.0-SNAPSHOT</restful.gwt.version>
     <jruby.plugins.version>0.20.0-SNAPSHOT</jruby.plugins.version>
     <gwt.version>1.7.1</gwt.version>
     <datamapper.version>1.0.0</datamapper.version>
