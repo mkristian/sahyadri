@@ -1,1 +1,3 @@
-Ixtlan::Guard.initialize(:permissions, {:index => []})
+Ixtlan::Guard.initialize(:permissions, {
+#:index => []
+})

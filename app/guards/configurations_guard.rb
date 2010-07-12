@@ -1,4 +1,4 @@
 Ixtlan::Guard.initialize(:configurations, 
-                 { :show => [], 
-                   :edit => [], 
-                   :update => [] })
+                 { :show => [:*, :admin],
+                   :edit => [:admin],
+                   :update => [:admin] })

@@ -1,3 +1,3 @@
 Ixtlan::Guard.initialize(:audits, {
-:index => []
+:index => [:admin]
 })
