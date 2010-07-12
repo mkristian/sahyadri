@@ -28,9 +28,9 @@ production:
   repositories:
     default:
       adapter: sqlite3
-      database: db/production.sqlite3
+      database: /var/locale/production.sqlite3
       pool: 5
       timeout: 5000
     books:
       adapter: lucene
-      path: db/lucene
+      path: /var/locale/lucene
