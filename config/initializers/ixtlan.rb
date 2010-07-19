@@ -6,8 +6,10 @@ module Ixtlan
     # AUDIT = nil
   end
 end
-require 'ixtlan/models'
-require 'ixtlan/modified_by'
+
+# rails related libraries from ixtlan
+require 'ixtlan/rails'
+
 if ENV['RAILS_ENV']
   require 'ixtlan/models/role'
   require 'ixtlan/models/permission'
@@ -27,15 +29,7 @@ if ENV['RAILS_ENV']
   require 'ixtlan/models/word'
   require 'i18n_text'
   require 'book'
-  require 'ixtlan/rails/error_handling'
-  require 'ixtlan/rails/audit'
-  require 'ixtlan/rails/session_timeout'
-  require 'ixtlan/rails/unrestful_authentication'
-  require 'ixtlan/rails/guard'
-  require 'ixtlan/rails/timestamps_modified_by_filter'
-  require 'ixtlan/optimistic_persistence'
 end
-require 'ixtlan/monkey_patches'
 
 # auto require to load needed libraries . . .
 require 'datamapper4rails'
@@ -47,7 +41,7 @@ require 'ixtlan/session'
 ActionController::Base.session_store = :datamapper_store
 ActionController::Base.session = {
   :cache       => true,
-  :session_class => Ixtlan::Session
+  :session_class => Ixtlan::SessionWithCache
 }
 
 # load the guard config files from RAILS_ROOT/app/guards

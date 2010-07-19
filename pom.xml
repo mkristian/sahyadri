@@ -115,7 +115,7 @@
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>ixtlan</artifactId>
-      <version>0.4.0.pre4</version>
+      <version>0.4.0.pre5</version>
       <type>gem</type>
     </dependency>
     <dependency>
@@ -219,6 +219,12 @@
         <artifactId>gem-maven-plugin</artifactId>
         <version>${jruby.plugins.version}</version>
         <extensions>true</extensions>
+        <executions>
+          <execution>
+    	    <phase>prepare-package</phase>
+	    <goals><goal>initialize</goal></goals>
+	  </execution>
+        </executions> 
       </plugin>
       <plugin>
         <groupId>de.saumya.mojo</groupId>
