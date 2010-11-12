@@ -246,7 +246,7 @@ public class Books implements EntryPoint {
 
         @Override
         public void reset(final Book resource) {
-            reset(resource, resource.updatedAt, resource.updatedBy);
+            reset(resource.updatedAt, resource.updatedBy);
         }
 
     }
