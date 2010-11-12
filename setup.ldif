@@ -1,0 +1,63 @@
+dn: dc=sahyadri,dc=example,dc=com
+objectClass: organization
+objectClass: dcObject
+o: Sahyadri School
+dc: Sahyadri
+
+dn: ou=people,dc=sahyadri,dc=example,dc=com
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=sahyadri,dc=example,dc=com
+objectClass: organizationalUnit
+ou: groups
+
+dn: uid=kristian,ou=people,dc=sahyadri,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+uid: kristian
+sn: Meier
+givenName: Kristian
+cn: Kristian Meier
+uidNumber: 10000
+gidNumber: 1000
+userPassword: {SSHA}/o6oa2GOphls/lzOFCwVkw9ARWEEiw+x
+mail: m.kristian@web.de
+loginShell: /bin/false
+homeDirectory: /home/kristian
+
+dn: cn=manager,ou=groups,dc=sahyadri,dc=example,dc=com
+objectClass: posixGroup
+cn: manager
+gidNumber: 1000
+memberUid: kristian
+
+dn: cn=guests,ou=groups,dc=sahyadri,dc=example,dc=com
+objectClass: posixGroup
+cn: guests
+gidNumber: 1001
+
+dn: cn=teachers,ou=groups,dc=sahyadri,dc=example,dc=com
+objectClass: posixGroup
+cn: teachers
+gidNumber: 1002
+
+dn: cn=students,ou=groups,dc=sahyadri,dc=example,dc=com
+objectClass: posixGroup
+cn: students
+gidNumber: 1003
+
+dn: cn=office,ou=groups,dc=sahyadri,dc=example,dc=com
+objectClass: posixGroup
+cn: office
+gidNumber: 1004
+
+dn: cn=users,ou=groups,dc=sahyadri,dc=example,dc=com
+objectClass: posixGroup
+cn: users
+gidNumber: 10000
+
+dn: cn=librarian,ou=groups,dc=sahyadri,dc=example,dc=com
+objectClass: posixGroup
+cn: librarian
+gidNumber: 10001
