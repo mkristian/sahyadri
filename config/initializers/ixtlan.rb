@@ -1,9 +1,14 @@
+# added ldap support
+require 'ldap_resource'
+require 'adapters/ldap_adapter'
+
 module Ixtlan
   module Models
     # overwrite configuration class
     # CONFIGURATION = "::MyConfiguration"
     # set this to nil to switch off Audit logs into the database
     # AUDIT = nil
+    GROUP_USER = "::GroupUser"
   end
 end
 
@@ -45,4 +50,4 @@ ActionController::Base.session = {
 }
 
 # load the guard config files from RAILS_ROOT/app/guards
-Ixtlan::Guard.load(Slf4r::LoggerFacade.new(Ixtlan::Guard)) if ENV['RAILS_ENV']
+Ixtlan::Guard.load(Slf4r::LoggerFacade.new(Ixtlan::Guard), :manager) if ENV['RAILS_ENV']

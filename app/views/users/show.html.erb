@@ -13,6 +13,15 @@
   <%=h @user.email %>
 </p>
 
+<p>
+  <b>Primary Group</b>
+   <%=h @user.primary_group.name %>
+</p>
+
+<p>
+   <b>Groups</b>
+   <%=h @user.groups.collect {|g| g.name }.join(', ') %>
+</p>
 
 <%= link_to 'Edit', edit_user_path(@user.key) %> |
 <%= link_to 'Back', users_path %>

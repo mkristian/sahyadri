@@ -18,7 +18,7 @@
     <dependency>
       <groupId>org.jruby</groupId>
       <artifactId>jruby-complete</artifactId>
-      <version>1.5.1</version>
+      <version>1.5.3</version>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
@@ -126,6 +126,12 @@
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
+      <artifactId>dm-ldap-adapter</artifactId>
+      <version>0.4.0.alpha3</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
       <artifactId>rails</artifactId>
       <version>2.3.8</version>
       <type>gem</type>
@@ -196,18 +202,8 @@
       </snapshots>
     </repository>
     <repository>
-      <id>rubygems</id>
+      <id>rubygems-release</id>
       <url>http://gems.saumya.de/releases</url>
-    </repository>
-    <repository>
-      <id>rubygems-snapshots</id>
-      <url>http://gems.saumya.de/snapshots</url>    
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
     </repository>
   </repositories>
 
@@ -302,7 +298,7 @@
 		two sets of gems inside the war file
 	    -->
             <resource>
-              <directory>${jruby.gem.path}</directory>
+              <directory>${gem.path}</directory>
               <targetPath>WEB-INF/gems</targetPath>
             </resource>
           </webResources>
@@ -322,11 +318,11 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <restful.gwt.version>0.5.0-SNAPSHOT</restful.gwt.version>
-    <jruby.plugins.version>0.20.0-SNAPSHOT</jruby.plugins.version>
+    <jruby.plugins.version>0.23.0-SNAPSHOT</jruby.plugins.version>
     <gwt.version>1.7.1</gwt.version>
     <datamapper.version>1.0.0</datamapper.version>
     <!-- this allows to configure it for rails-maven-plugin as well jruby-maven-plugin and gem-maven-plugin -->
-    <jruby.gem.home>${project.build.directory}/wargems</jruby.gem.home>
-    <jruby.gem.path>${project.build.directory}/wargems</jruby.gem.path>
+    <gem.home>${project.build.directory}/rubygems</gem.home>
+    <gem.path>${project.build.directory}/rubygems</gem.path>
   </properties>
 </project>

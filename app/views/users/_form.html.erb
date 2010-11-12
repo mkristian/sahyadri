@@ -1,0 +1,28 @@
+<% form_for(@user, :url => (@user.new? ? users_path : user_path(@user.key))) do |f| %>
+  <%= f.error_messages %>
+
+  <% if @user.new? -%>
+  <p>
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+  </p>
+  <% end -%>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :primary_group, 'Primary Group' %>
+    <%= collection_select("user", "primary", GroupSet.all_groups, :id, :name, {:prompt => true}) %>
+  </p>
+
+  <p>
+    <%= f.label :user_group_ids, 'Group List' %> (use CRTL key to select/deselect)<br />
+    <%= collection_select("user", "group_ids", Group.visible_groups, :id, :name, {:prompt => true}, {:multiple => true}) %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
