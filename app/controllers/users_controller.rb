@@ -36,7 +36,6 @@ class UsersController < ApplicationController
       # setup params
       user[:primary] = pgroup.id.to_s if pgroup
       user[:groups] = groups.collect {|g| g.id}
-p user
     end
   end
 end

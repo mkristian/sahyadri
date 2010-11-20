@@ -40,10 +40,17 @@ production:
       pool: 5
       timeout: 5000
     ldap:
-      adapter: sqlite3
-      database: /var/local/production.sqlite3
-      pool: 5
-      timeout: 5000
+      adapter: ldap
+      host: localhost
+      port: 389
+      base: dc=sahyadri,dc=example,dc=com
+      facade: net_ldap
+      bind_name: cn=admin,dc=example,dc=com
+      password: secret
+#      adapter: sqlite3
+#      database: /var/local/production.sqlite3
+#      pool: 5
+#      timeout: 5000
     books:
       adapter: lucene
       path: /var/local/lucene
