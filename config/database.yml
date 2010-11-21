@@ -11,10 +11,10 @@ development:
       adapter: ldap
       host: localhost
       port: 389
-      base: dc=sahyadrischool,dc=org
+      base: dc=sahyadri,dc=example,dc=com
       facade: net_ldap
-      bind_name: cn=admin,dc=sahyadrischool,dc=org
-      password: <%= CONFIG[:ldap][:password] %>
+      bind_name: cn=admin,dc=example,dc=com
+      password: behappy
 #      adapter: sqlite3
 #      database: db/ldap.sqlite3
 #      pool: 5
@@ -43,10 +43,10 @@ production:
       adapter: ldap
       host: localhost
       port: 389
-      base: dc=sahyadri,dc=example,dc=com
+      base: dc=sahyadrischool,dc=org
       facade: net_ldap
-      bind_name: cn=admin,dc=example,dc=com
-      password: secret
+      bind_name: cn=admin,dc=sahyadrischool,dc=org
+      password: <%= CONFIG[:ldap][:password] %>
 #      adapter: sqlite3
 #      database: /var/local/production.sqlite3
 #      pool: 5
