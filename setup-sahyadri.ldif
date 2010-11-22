@@ -1,0 +1,43 @@
+dn: ou=groups,dc=sahyadrischool,dc=org
+objectClass: organizationalUnit
+ou: groups
+
+dn: cn=manager,ou=groups,dc=sahyadrischool,dc=org
+objectClass: posixGroup
+cn: manager
+gidNumber: 1000
+
+dn: cn=guests,ou=groups,dc=sahyadrischool,dc=org
+objectClass: posixGroup
+cn: guests
+gidNumber: 1001
+
+dn: cn=teachers,ou=groups,dc=sahyadrischool,dc=org
+objectClass: posixGroup
+cn: teachers
+gidNumber: 1002
+
+dn: cn=students,ou=groups,dc=sahyadrischool,dc=org
+objectClass: posixGroup
+cn: students
+gidNumber: 1003
+
+dn: cn=office,ou=groups,dc=sahyadrischool,dc=org
+objectClass: posixGroup
+cn: office
+gidNumber: 1004
+
+dn: cn=root,ou=groups,dc=sahyadrischool,dc=org
+objectClass: posixGroup
+cn: root 
+gidNumber: 10000
+
+dn: cn=users,ou=groups,dc=sahyadrischool,dc=org
+objectClass: posixGroup
+cn: users
+gidNumber: 10001
+
+dn: cn=librarian,ou=groups,dc=sahyadrischool,dc=org
+objectClass: posixGroup
+cn: librarian
+gidNumber: 10002
