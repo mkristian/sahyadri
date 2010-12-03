@@ -1,5 +1,7 @@
 <h1>Listing users</h1>
 
+<%= link_to 'New user', new_user_path %>
+
 <table>
   <tr>
     <th>Login</th>
@@ -7,7 +9,7 @@
     <th>Email</th>
   </tr>
 
-<% @users.each do |user| %>
+<% @users.sort { |u,v| u.name <=> v.name }.each do |user| %>
   <tr>
     <td><%=h user.login %></td>
     <td><%=h user.name %></td>
