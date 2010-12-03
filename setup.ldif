@@ -52,12 +52,17 @@ objectClass: posixGroup
 cn: office
 gidNumber: 1004
 
+dn: cn=root,ou=groups,dc=sahyadri,dc=example,dc=com
+objectClass: posixGroup
+cn: root 
+gidNumber: 10000
+
 dn: cn=users,ou=groups,dc=sahyadri,dc=example,dc=com
 objectClass: posixGroup
 cn: users
-gidNumber: 10000
+gidNumber: 10001
 
 dn: cn=librarian,ou=groups,dc=sahyadri,dc=example,dc=com
 objectClass: posixGroup
 cn: librarian
-gidNumber: 10001
+gidNumber: 10002
