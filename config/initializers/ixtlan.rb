@@ -50,4 +50,4 @@ ActionController::Base.session = {
 }
 
 # load the guard config files from RAILS_ROOT/app/guards
-Ixtlan::Guard.load(Slf4r::LoggerFacade.new(Ixtlan::Guard), :manager) if ENV['RAILS_ENV']
+Ixtlan::Guard.load(Slf4r::LoggerFacade.new(Ixtlan::Guard), :root) if ENV['RAILS_ENV']
