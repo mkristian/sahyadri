@@ -17,7 +17,11 @@ class UsersController < ApplicationController
 
   def setup_groups
     if user = params[:user]
-      user[:email] = "#{user[:login]}@mail" if user[:login]
+      user[:email] = if user[:login]
+                       "#{user[:login]}@mail"
+                     elsif user.login && user.email.nil?
+                       "#{user.login}@mail"
+                     end
       
       pgroup = Group.get(user.delete(:primary))
       if pgroup
