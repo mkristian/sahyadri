@@ -3,7 +3,7 @@ class GroupSet
   MAP = {
     :manager => [:dip, :video, :audio, :plugdev, :scanner, :admin, :cdrom, :adm, :lpadmin, :powerdev, :dialout],
     :guests => [:audio, :cdrom, :video, :plugdev],
-    :teachers => [:audio, :cdrom, :video, :plugdev, :scanner, :root],
+    :teachers => [:audio, :cdrom, :video, :plugdev, :scanner],
     :students => [:audio, :cdrom, :video, :plugdev],
     :office => [:audio, :cdrom, :video, :plugdev, :scanner]
   }
