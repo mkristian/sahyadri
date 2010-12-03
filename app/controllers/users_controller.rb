@@ -19,8 +19,8 @@ class UsersController < ApplicationController
     if user = params[:user]
       user[:email] = if user[:login]
                        "#{user[:login]}@mail"
-                     elsif user.login && user.email.nil?
-                       "#{user.login}@mail"
+                     elsif params[:id]
+                       "#{User.get(params[:id]).login}@mail"
                      end
       
       pgroup = Group.get(user.delete(:primary))
