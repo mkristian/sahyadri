@@ -1,6 +1,6 @@
 Ixtlan::Guard.initialize(:books, 
-                 { :index => ['books','teacher'], 
-                   :show => ['books','teacher'], 
+                 { :index => ['books','teachers', 'students', 'office'], 
+                   :show => ['books','teachers', 'students', 'office'], 
                    :edit => ['books'], 
                    :update => ['books'], 
                    :new => ['books'], 
