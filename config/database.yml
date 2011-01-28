@@ -9,12 +9,12 @@ development:
       timeout: 5000
     ldap:
       adapter: ldap
-      host: localhost
+      host: <%= CONFIG[:ldap][:host] || 'localhost' %>
       port: 389
-      base: dc=sahyadri,dc=example,dc=com
+      base: <%= CONFIG[:ldap][:base] || 'dc=sahyadri,dc=example,dc=com' %>
       facade: net_ldap
-      bind_name: cn=admin,dc=example,dc=com
-      password: behappy
+      bind_name: <%= CONFIG[:ldap][:bind_name] || 'cn=admin,dc=example,dc=com' %>
+      password: <%= CONFIG[:ldap][:password] %>
 #      adapter: sqlite3
 #      database: db/ldap.sqlite3
 #      pool: 5
@@ -41,7 +41,7 @@ production:
       timeout: 5000
     ldap:
       adapter: ldap
-      host: localhost
+      host: ldap1
       port: 389
       base: dc=sahyadrischool,dc=org
       facade: net_ldap

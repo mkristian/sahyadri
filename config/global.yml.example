@@ -1,2 +1,5 @@
 ldap:
+  host: ldap1
+  base: dc=sahyadrischool,dc=org
+  bind_name: cn=admin,dc=sahyadrischool,dc=org
   password: behappy
