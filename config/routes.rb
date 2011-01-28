@@ -1,4 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.connect 'bills', :controller => :bills, :action => 'index'
+  
+  map.connect 'bills/:file.:ext', :controller => :bills, :action => 'show'
+  
   map.resources :audits
 
   map.resource :authentication
