@@ -121,7 +121,7 @@
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>ixtlan</artifactId>
-      <version>0.4.1-SNAPSHOT</version>
+      <version>0.4.2</version>
       <type>gem</type>
     </dependency>
     <dependency>
