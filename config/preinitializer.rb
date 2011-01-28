@@ -19,7 +19,11 @@ module Ixtlan
     end
 
     def self.load(file)
-      symbolize_keys(YAML::load(ERB.new(IO.read(file)).result)) if File.exists?(file)
+      if File.exists?(file)
+        symbolize_keys(YAML::load(ERB.new(IO.read(file)).result))
+      else
+        warn "no file #{file} to load - maybe the is a #{file}.example"
+      end
     end
   end
 end

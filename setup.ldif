@@ -56,6 +56,7 @@ dn: cn=root,ou=groups,dc=sahyadri,dc=example,dc=com
 objectClass: posixGroup
 cn: root 
 gidNumber: 10000
+memberUid: kristian
 
 dn: cn=users,ou=groups,dc=sahyadri,dc=example,dc=com
 objectClass: posixGroup

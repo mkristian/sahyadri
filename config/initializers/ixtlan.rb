@@ -1,3 +1,4 @@
+require 'slf4r/ruby_logger'
 # added ldap support
 require 'ldap_resource'
 require 'adapters/ldap_adapter'
