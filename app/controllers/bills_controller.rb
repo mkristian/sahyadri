@@ -5,7 +5,7 @@ class BillsController < ApplicationController
 
   # GET /bills
   def index
-    path = File.join(Rails.root, 'bills', current_user.login)
+    path = File.join(Rails.root, Configuration.instance.bills_directory, current_user.login)
     if File.exists?(path) && File.directory?(path)
       @files = Dir["#{path}/**"].collect { |f| File.basename(f) }
     else
