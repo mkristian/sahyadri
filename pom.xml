@@ -215,7 +215,7 @@
 
   <build>
     <outputDirectory>war/WEB-INF/classes</outputDirectory>
-    <finalName>books</finalName>
+    <finalName>sahyadri</finalName>
     <plugins> 
       <plugin>
         <groupId>de.saumya.mojo</groupId>
