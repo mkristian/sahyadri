@@ -12,9 +12,31 @@
 </head>
 <body>
 
+<!-- replace with header -->
+
+
+<% if controller.send :current_user %>
+  <div style="float:right">
+  
+  <% form_tag "", :method => :delete do %>
+   
+  <%= submit_tag "logout", :class=> :button %>
+
+  <%= hidden_field_tag(:login, controller.send(:current_user).login) %>
+
+  <% end %>
+  
+</div>
+
+<h3>Bills for <%= controller.send(:current_user).name %></h3>
+
+<% end -%>
+
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield %>
+
+<!-- replace footer goes  -->
 
 </body>
 </html>
