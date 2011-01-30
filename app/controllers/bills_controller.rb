@@ -5,9 +5,15 @@ class BillsController < ApplicationController
 
   # GET /bills
   def index
+    @dir = params[:dir] if params[:dir]
     path = File.join(Rails.root, Configuration.instance.bills_directory, current_user.login)
+    path = File.join(path, @dir) if @dir
     if File.exists?(path) && File.directory?(path)
-      @files = Dir["#{path}/**"].collect { |f| File.basename(f) }
+      @files = Dir[File.join(path, "**")].collect do |f| 
+        file = File.basename(f)
+        file = File.join(file, "") if File.directory?(f)
+        file
+      end
     else
       render :text => "no files for #{current_user.login}"
     end
@@ -16,12 +22,14 @@ class BillsController < ApplicationController
   # GET /bills/file
   # GET /bills/1.xml
   def show
+    dir = params[:dir] if params[:dir]
     filename = if params[:ext]
                  params[:file] + "." + params[:ext]
                else
                  params[:file]
                end
-    path = File.join(Rails.root, 'bills', current_user.login, filename)
+    path = File.join(Rails.root, Configuration.instance.bills_directory, current_user.login)
+    path = dir ? File.join(path, dir, filename) : File.join(path, filename)
     if File.exists?(path)
       send_file(path)
     else
