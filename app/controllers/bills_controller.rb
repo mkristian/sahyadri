@@ -6,7 +6,7 @@ class BillsController < ApplicationController
   # GET /bills
   def index
     @dir = params[:dir] if params[:dir]
-    path = File.join(Rails.root, Configuration.instance.bills_directory, current_user.login)
+    path = File.join(Configuration.instance.bills_directory, current_user.login)
     path = File.join(path, @dir) if @dir
     if File.exists?(path) && File.directory?(path)
       @files = Dir[File.join(path, "**")].collect do |f| 
