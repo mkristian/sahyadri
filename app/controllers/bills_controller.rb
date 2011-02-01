@@ -28,7 +28,7 @@ class BillsController < ApplicationController
                else
                  params[:file]
                end
-    path = File.join(Rails.root, Configuration.instance.bills_directory, current_user.login)
+    path = File.join(Configuration.instance.bills_directory, current_user.login)
     path = dir ? File.join(path, dir, filename) : File.join(path, filename)
     if File.exists?(path)
       send_file(path)
