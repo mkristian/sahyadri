@@ -5,17 +5,21 @@ class BillsController < ApplicationController
 
   # GET /bills
   def index
-    @dir = params[:dir] if params[:dir]
-    path = File.join(Configuration.instance.bills_directory, current_user.login)
-    path = File.join(path, @dir) if @dir
-    if File.exists?(path) && File.directory?(path)
-      @files = Dir[File.join(path, "**")].collect do |f| 
-        file = File.basename(f)
-        file = File.join(file, "") if File.directory?(f)
-        file
+    if request.path =~ /\/$/
+      @dir = params[:dir] if params[:dir]
+      path = File.join(Configuration.instance.bills_directory, current_user.login)
+      path = File.join(path, @dir) if @dir
+      if File.exists?(path) && File.directory?(path)
+        @files = Dir[File.join(path, "**")].collect do |f|
+          file = File.basename(f)
+          file = File.join(file, "") if File.directory?(f)
+          file
+        end
+      else
+        render :text => "no files for #{current_user.login}"
       end
     else
-      render :text => "no files for #{current_user.login}"
+      redirect_to request.path + "/"
     end
   end
 
