@@ -19,7 +19,7 @@ class BillsController < ApplicationController
         render :text => "no files for #{current_user.login}"
       end
     else
-      redirect_to request.path + "/"
+      redirect_to request.env['REQUEST_URI'] + "/"
     end
   end
 
