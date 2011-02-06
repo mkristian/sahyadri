@@ -2,19 +2,21 @@ require 'action_controller/streaming'
 class BillsController < ApplicationController
 
   cache_headers :private
+# GET /bills
+def index
+  if request.path =~ /\/$/
+    @dir = params[:dir] if params[:dir]
+    path = File.join(Configuration.instance.bills_directory, current_user.login)
+    path = File.join(path, @dir) if @dir
+    if File.exists?(path) && File.directory?(path)
 
-  # GET /bills
-  def index
-    if request.path =~ /\/$/
-      @dir = params[:dir] if params[:dir]
-      path = File.join(Configuration.instance.bills_directory, current_user.login)
-      path = File.join(path, @dir) if @dir
-      if File.exists?(path) && File.directory?(path)
         @files = Dir[File.join(path, "**")].collect do |f|
           file = File.basename(f)
           file = File.join(file, "") if File.directory?(f)
           file
         end
+@files.sort!
+p @files
       else
         render :text => "no files for #{current_user.login}"
       end

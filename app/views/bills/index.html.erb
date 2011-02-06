@@ -1,13 +1,19 @@
+
+
+<div style="color:#0B3B0B; font-size:14px; font-weight:bold">
+<%=  @dir %>
+</div>
+
+
+<% @files.each do |file| %>  
+<p><img src="<% url_for(:controller => :bills) %>/../dot.png" width="17" height="17" alt="image">
+<a href="<%= file %>"><%= file %></a>
+</p>
+<% end %>
+
+
+<br><br>
 <% if @dir %>
-<h4>
-Directory <%= @dir %>
-</h4>
-<p>
-  <a href="..">parent directory</a>
-</p>
+<a style="color:darkblue; text-decoration:none; font-size:13px; font-weight:bold" href="..">[ Main Page ]</a></div>
 <% end %>
-<% @files.each do |file| %>
-<p>
-  <a href="<%= file %>"><%= file %></a>
-</p>
-<% end %>
+
