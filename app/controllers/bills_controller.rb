@@ -1,22 +1,33 @@
 require 'action_controller/streaming'
 class BillsController < ApplicationController
 
-  cache_headers :private
-# GET /bills
-def index
-  if request.path =~ /\/$/
-    @dir = params[:dir] if params[:dir]
-    path = File.join(Configuration.instance.bills_directory, current_user.login)
-    path = File.join(path, @dir) if @dir
-    if File.exists?(path) && File.directory?(path)
+  MONTHS = ["Jan","Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug" ,"Sep", "Oct", "Nov", "Dez"]
 
+  cache_headers :private
+
+  # GET /bills
+  def index
+    if request.path =~ /\/$/
+      @dir = params[:dir] if params[:dir]
+      path = File.join(Configuration.instance.bills_directory, current_user.login)
+      path = File.join(path, @dir) if @dir
+      if File.exists?(path) && File.directory?(path)
         @files = Dir[File.join(path, "**")].collect do |f|
           file = File.basename(f)
-          file = File.join(file, "") if File.directory?(f)
+          if File.directory?(f)
+            file = File.join(file, "")
+            def file.to_display
+              m = MONTHS[to_s.sub(/.*_/, '').to_i - 1]
+              "#{m} #{to_s.sub(/_.*/, '')}"
+            end
+          else
+            def file.to_display
+              to_s
+            end
+          end
           file
         end
-@files.sort!
-p @files
+        @files.sort!
       else
         render :text => "no files for #{current_user.login}"
       end
