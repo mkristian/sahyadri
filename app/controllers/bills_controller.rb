@@ -1,7 +1,7 @@
 require 'action_controller/streaming'
 class BillsController < ApplicationController
 
-  MONTHS = ["Jan","Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug" ,"Sep", "Oct", "Nov", "Dez"]
+  MONTHS = ["Jan","Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug" ,"Sep", "Oct", "Nov", "Dec"]
 
   cache_headers :private
 
