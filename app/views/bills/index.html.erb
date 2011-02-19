@@ -5,7 +5,7 @@
 
 
 <% @files.each do |file| %>  
-<p><img src="/sahyadri/bills/../dot.png" width="17" height="17" alt="image">
+<p><img src="<%= url_for(:controller => :bills) %>/../dot.png" width="17" height="17" alt="image">
 <a style="text-decoration:none; font-size:13px; font-weight:bold" href="<%= file %>"><%= file.to_display %></a>
 </p>
 <% end %>
