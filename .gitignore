@@ -2,4 +2,4 @@ root_*
 *~
 *.csv
 target
-bills
+bills/*
