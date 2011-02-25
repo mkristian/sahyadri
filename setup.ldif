@@ -54,7 +54,7 @@ gidNumber: 1004
 
 dn: cn=root,ou=groups,dc=sahyadri,dc=example,dc=com
 objectClass: posixGroup
-cn: root 
+cn: root
 gidNumber: 10000
 memberUid: kristian
 
