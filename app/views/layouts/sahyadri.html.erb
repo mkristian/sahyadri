@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <% if controller.send :current_user %>
+  <meta http-equiv="refresh" content="<%= Configuration.instance.session_idle_timeout * 60 + 5 %>" />
+  <% end -%>
+  <title>Books: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'sahyadri' %>
+</head>
+<body>
+<% if flash["notice"] || @notice -%>
+<div id="notice"><%= flash["notice"] || @notice %></div>
+<% end -%>
+
+<% if controller.send(:current_user) -%>
+<div id="navigation">
+<div class="navigation left">
+<% if allowed(:books, :index) -%>
+<a href="<%= books_path %>">books</a>
+<% end -%>
+<% if allowed(:bills, :index) && ::Bill.bill_path(controller.send(:current_user)) -%>
+<a href="<%= url_for(:controller => :bills) %>">bills</a>
+<% end -%>
+<% if allowed(:users, :index) -%>
+<a href="<%= users_path %>">users</a>
+<% end -%>
+<% if allowed(:configurations, :edit) -%>
+<a href="<%= edit_configuration_path %>">configurations</a>
+<% end -%>
+
+</div>
+<div class="navigation right">
+<span>Welcome <%= controller.send(:current_user).name %></span>
+
+  <% form_tag "", :method => :delete, :id => 'logout' do %>
+<input class="button" type="submit" value="logout" />
+<input type="hidden" name="login" value="<%= controller.send(:current_user).login %>" />
+  <% end %>
+</div>
+</div>
+<% end -%>
+
+<%= yield %>
+
+</body>
+</html>
