@@ -52,3 +52,6 @@ ActionController::Base.session = {
 
 # load the guard config files from RAILS_ROOT/app/guards
 Ixtlan::Guard.load(Slf4r::LoggerFacade.new(Ixtlan::Guard), :root) if ENV['RAILS_ENV']
+
+# make sure data-mapper did finalize its models
+DataMapper.finalize

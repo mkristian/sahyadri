@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :login
   before_filter :check_session_expiry
-
+  
   include Ixtlan::Rails::RescueModule
   # you can overwrite a rescue directive here
   # rescue_from ::Ixtlan::StaleResourceError, :with => :stale_resource

@@ -1,0 +1,19 @@
+<%= render :partial => "common/head", :locals => { :prefix => nil, :fuzzy => false, :path => nil , :new_path => nil, :delete_path => nil}  %>
+
+<div id="body" style="clear: both;">
+
+<% form_for(@configuration, :url => configuration_path) do |f| %>
+ <div class="head" style="position: fixed; top: 4.1em;">
+<%= f.submit 'save', :class=>:button %>
+</div>
+ <div class="entity">
+  <%= f.error_messages %>
+
+  <div class="big-box">
+    <%= f.label :bills_directory %><br />
+    <%= f.text_field :bills_directory %>
+  </div>
+
+</div>
+<% end %>
+</div>

@@ -1,27 +1,7 @@
-<p>
-  <b>Login:</b>
-  <%=h @user.login %>
-</p>
+<%= render :partial => "common/head", :locals => { :prefix => "user", :fuzzy => false, :path => users_path, :new_path => new_user_path, :delete_path => user_path(@user.id) }  %>
 
-<p>
-  <b>Name:</b>
-  <%=h @user.name %>
-</p>
+<div id="body" style="clear: both;">
 
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
+<%= render :partial => "form", :locals => { :disabled => true } %>
 
-<p>
-  <b>Primary Group</b>
-   <%=h @user.primary_group.name %>
-</p>
-
-<p>
-   <b>Groups</b>
-   <%=h @user.groups.collect {|g| g.name }.join(', ') %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user.key) %> |
-<%= link_to 'Back', users_path %>
+</div>

@@ -1,6 +1,7 @@
-<h1>Editing user</h1>
+<%= render :partial => "common/head", :locals => { :prefix => "user", :fuzzy => false, :path => users_path, :new_path => new_user_path, :delete_path => user_path(@user.id) }  %>
 
-<%= render 'form' %>
+<div id="body" style="clear: both;">
 
-<%= link_to 'Show', user_path(@user.key) %> |
-<%= link_to 'Back', users_path %>
+<%= render :partial => "form", :locals => { :disabled => false } %>
+
+</div>

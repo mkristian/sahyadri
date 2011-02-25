@@ -2,29 +2,54 @@ require 'csv'
 require 'books_import_export'
 class BooksController < ApplicationController
 
+  layout "sahyadri"
+
+  before_filter :users
+
+  def users
+    @users = User.all(:order => [:name])
+  end
+
   # GET /books
   # GET /books.xml
   def index
     @query = params[:query]
     @limit = params[:limit].to_i + 1
     @offset = params[:offset].to_i
+    @fuzzy = !(["exact search", "false"].member? params.delete(:fuzzy))
+
     field = 
-      if "false" == params.delete(:fuzzy)
+      unless @fuzzy
         :total
       else
         :total.like
       end
+    # TODO not shure why this is needed
+    flash.clear
     @books =
-      if @limit > 1 && @query
+      if @limit > 1 && @query && @query.size > 0
         Book.all(field => "#{@query}", :limit => @limit, :offset => @offset) 
-      elsif @query
+      elsif @query && @query.size > 0
         Book.all(field => "#{@query}")
       else
+        flash["notice"] = "nothing to search" if @query
         Book.all(:id => -1123870) # the funny id is to produce an empty result set
       end
-    
+    @size = @books.size
+
     respond_to do |format|
-      format.html
+      format.html {
+        if @books.size == 1
+          @book = @books[0]
+          if allowed(:edit)
+            render "edit"
+          else
+            render "show"
+          end
+        else
+          render
+        end
+      }
       format.xml  { render :xml => @books }
       format.csv do
         render :text => proc { |response, output|
@@ -66,6 +91,8 @@ class BooksController < ApplicationController
   # GET /books/1/edit
   def edit
     @book = Book.get!(params[:id])
+p @book
+p @book.state
   end
 
   # POST /books

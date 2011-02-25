@@ -35,6 +35,12 @@ class Book
 
   property :total, Text, :required => true, :format => /^[^<">]*$/
 
+  property :section, String, :required => false, :format => /^[^<">]*$/, :length => 32
+
+  property :shelf, String, :required => false, :format => /^[^<">]*$/, :length => 32
+
+  has 1, :state, "BookState"
+
   before :valid? do
     attr = attributes
     attr.delete(:total)

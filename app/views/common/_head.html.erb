@@ -1,0 +1,28 @@
+<% limit = 10 %>
+<div id="search">
+<% if prefix -%>
+<div class="head">
+  <form action="<%= path %>" method="get" style="float:left;">
+    <label for="query"><%= prefix %> search: </label>
+    <input type="text" name="query" value="<%= @query %>" />
+    <input type="hidden" name="limit" value="<%= limit %>" />
+<% if fuzzy -%>
+    <input class="button" type="submit" value="similar search" name="fuzzy"/>
+    <input class="button" type="submit" value="exact search" name="fuzzy"/>
+<% else -%>
+    <input class="button" type="submit" value="search"/>
+<% end -%>
+  </form>
+  <% if new_path -%>
+  <form action="<%= new_path %>" method="get" style="float:right;">
+    <input class="button" type="submit" value="new <%= prefix %> entry"/>
+  </form>
+  <% end -%>
+  <% if delete_path
+form_tag delete_path, :method=>"delete", :style=>"float:right;" do %>
+  <input class="button" type="submit" value="delete"/>
+<% end 
+end -%>
+</div>
+<% end -%>
+</div>

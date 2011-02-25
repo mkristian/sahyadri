@@ -1,0 +1,63 @@
+<% limit = 10 %>
+<% has_next = @size > limit %>
+<% has_previous = @offset.to_i >= limit %>
+
+<div id="search" class="head">
+<div>
+  <form action="<%= path %>" method="get" style="float:left;">
+    <label for="query"><%= prefix %> search: </label>
+    <input type="text" name="query" value="<%= @query %>" />
+    <input type="hidden" name="limit" value="<%= limit %>" />
+<% if fuzzy -%>
+    <input class="button" type="submit" value="similar search" name="fuzzy"/>
+    <input class="button" type="submit" value="exact search" name="fuzzy"/>
+<% else -%>
+    <input class="button" type="submit" value="search"/>
+<% end -%>
+  </form>
+  <% if new_path -%>
+  <form action="<%= new_path %>" method="get" style="float:right;">
+    <input class="button" type="submit" value="new <%= prefix %> entry"/>
+  </form>
+  <% end -%>
+</div>
+<div style="clear: both;">
+  <form action="<%= path %>" method="get" style="float:left;">
+    <input type="hidden" name="query" value="<%= @query %>" />
+    <input type="hidden" name="limit" value="<%= limit %>" />
+    <% unless @fuzzy %>
+    <input type="hidden" name="fuzzy" value="false" />
+    <% end %>
+    <input type="hidden" name="offset" value="0" />
+    <input class="button <%= has_previous %>" type="submit" value="first result" <%= 'disabled="disabled"' unless has_previous %> />
+  </form>
+  <form action="<%= path %>" method="get" style="float:left;">
+    <input type="hidden" name="query" value="<%= @query %>" />
+    <input type="hidden" name="limit" value="<%= limit %>" />
+    <% unless @fuzzy %>
+    <input type="hidden" name="fuzzy" value="false" />
+    <% end %>
+    <input type="hidden" name="offset" value="<%= @offset.to_i - limit %>" />
+    <input class="button <%= has_previous %>" type="submit" value="previous results" <%= 'disabled="disabled"' unless has_previous %> />
+  </form>
+  <form action="<%= path %>" method="get" style="float:left;">
+    <input type="hidden" name="query" value="<%= @query %>" />
+    <input type="hidden" name="limit" value="<%= limit %>" />
+    <% unless @fuzzy %>
+    <input type="hidden" name="fuzzy" value="false" />
+    <% end %>
+    <input type="hidden" name="offset" value="<%= @offset.to_i + limit %>" />
+    <input class="button <%= has_next %>" type="submit" value="next results" <%= 'disabled="disabled"' unless has_next %> />
+  </form>
+<% if csv -%>
+  <form action="books.csv" method="get" style="float:right;">
+    <input type="hidden" name="query" value="<%= @query %>" />
+    <input type="hidden" name="limit" value="987654" />
+    <% unless @fuzzy %>
+    <input type="hidden" name="fuzzy" value="false" />
+    <% end %>
+    <input class="button" type="submit" value="export serach result as CSV"/>
+  </form>
+<% end -%>
+</div>
+

@@ -1,118 +1,8 @@
-<% limit = 10 %>
-<% has_next = @books.size > limit %>
-<% has_previous = @offset >= limit %>
-
-<style>
-  label {
-  color: darkblue;
-  font-weight: bold;
-  }
-  input.true {
-  color: darkgreen;
-  }
-  input.button {
-  font-weight: bold;
-  cursor: pointer;
-  }
-  input.false {
-  color: green;
-  cursor: default;
-  }
-  table {
-  margin-top: 1em;
-  }
-  tr.even {
-  background-color: #eeeeee;
-  }
-  thead tr {
-    background-color: lightgray;
-    color: darkred;
-  }  
-  div#head {
-    position: fixed;
-    top: 0em;
-    width: 100%;
-    background-color: white;
-    padding-top: .2em;
-    padding-bottom: .2em;
-    }
-  td, th{
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-   }
-   th {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-   }
-   table {
-     margin-top: 4em;
-     border-right: 1px solid black;
-  }    
-
-  td, th {
-    padding: .2em;
-    }
-  form#logout {
-   float:right;
-   margin-right: 1em;
-  }
-
-
-tbody {
-    width: 970px;
-    overflow: auto; 
-    height: 350px;
-    overflow-x: hidden;
-}
-
-</style>
-
-<div id="head">
-<div>
-  <form action="" method="get" style="float:left;">
-    <label for="query">book search: </label>
-    <input type="text" name="query" value="<%= @query %>" />
-    <input type="hidden" name="limit" value="<%= limit %>" />
-    <input class="button" type="submit" value="exact" name="exact"/>
-    <input class="button" type="submit" value="similar" name="similar"/>
-  </form>
-</div>
-<div style="clear: both;">
-  <form action="" method="get" style="float:left;">
-    <input type="hidden" name="query" value="<%= @query %>" />
-    <input type="hidden" name="limit" value="<%= limit %>" />
-    <% unless params[:exact].nil? %>
-    <input type="hidden" name="exact" value="exact" />
-    <% end %>
-    <input type="hidden" name="offset" value="<%= @offset - limit %>" />
-    <input class="button <%= has_previous %>" type="submit" value="previous results" <%= 'disabled="disabled"' unless has_previous %> />
-  </form>
-  <form action="" method="get" style="float:left;">
-    <input type="hidden" name="query" value="<%= @query %>" />
-    <input type="hidden" name="limit" value="<%= limit %>" />
-    <% unless params[:exact].nil? %>
-    <input type="hidden" name="exact" value="exact" />
-    <% end %>
-    <input type="hidden" name="offset" value="<%= @offset + limit %>" />
-    <input class="button <%= has_next %>" type="submit" value="next results" <%= 'disabled="disabled"' unless has_next %> />
-  </form>
-  <% form_tag "", :method => :delete, :id => 'logout' do %>
-<input class="button" type="submit" value="logout" />
-<input type="hidden" name="login" value="<%= controller.send(:current_user).login %>" />
-  <% end %>
-  <form action="books.csv" method="get" style="float:right;">
-    <input type="hidden" name="query" value="<%= @query %>" />
-    <input type="hidden" name="limit" value="987654" />
-    <% unless params[:exact].nil? %>
-    <input type="hidden" name="exact" value="exact" />
-    <% end %>
-    <input class="button" type="submit" value="export as CSV"/>
-  </form>
-</div>
-</div>
+<%= render :partial => "common/index_head", :locals => { :prefix => "book", :fuzzy => true, :path => books_path, :new_path => new_book_path, :csv => false }  %>
+<div id="body" style="clear: both;">
 
 <% if @books.size > 0 %>
-<div id="books" style="clear: both;">
+<div id="body" style="clear: both;">
   <table cellspacing="0">
      <thead>
       <tr> 
@@ -137,11 +27,15 @@ tbody {
   </thead>
 
   <tbody>
-<% @books.each do |book| %>
+<% title = allowed(:books, :edit) ? "edit details" : "show details"
+  @books.each do |book| 
+  book_path = allowed(:books, :edit) ? edit_book_path(book.id) : book_path(book.id)
+%>
+
   <tr class='<%= cycle("odd", "even") %>' >
     <td><%=h book.date %></td>
     <td><%=h book.author %></td>
-    <td><%=h book.title %></td>
+    <td><a href="<%= book_path %>" title="<%= title %>"><%=h book.title %></a></td>
     <td><%=h book.edition %></td>
     <td><%=h book.place_publisher %></td>
     <td><%=h book.status %></td>
@@ -168,3 +62,5 @@ tbody {
 </div>
 
 <% end %>
+
+</div>

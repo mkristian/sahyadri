@@ -1,8 +1,34 @@
 class UsersController < ApplicationController
   include Ixtlan::Controllers::UsersController
 
+  layout "sahyadri"
+
   alias :create_old :create
   alias :update_old :update
+
+  def index
+    @users = query(USER, :name)
+    @size = @users.size
+    @query = params[:query]
+    @limit = params[:limit].to_i + 1
+    @offset = params[:offset].to_i
+
+    respond_to do |format|
+      format.html do
+        if @users.size == 1
+          @user = @users[0]
+          if allowed(:edit)
+            render "edit"
+          else
+            render "show"
+          end
+        else
+          render
+        end
+      end
+      format.xml  { render :xml => @users }
+    end
+  end
 
   def create
     setup_groups

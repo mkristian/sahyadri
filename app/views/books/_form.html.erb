@@ -1,0 +1,100 @@
+<%
+button_disabled = false
+if @book.new? 
+  method =  :post
+  button_name = "create"
+  path = new_book_path
+else
+   if disabled
+     method =  :get
+     button_name = "edit"
+     path = edit_book_path(@book.key)
+     button_disabled = !allowed(:books, :edit)
+   else
+     method =  :put
+     button_name = "save"
+     path = book_path(@book.key)
+   end
+end
+%>
+<div id="body" style="clear: both;">
+
+<% form_for(:book, :url => path, :html => {:method => method}) do |f| %>
+ <div class="head" style="position: fixed; top: 4.1em;">
+<%= f.submit button_name, :class=>:button, :disabled => button_disabled %>
+</div>
+ <div class="entity">
+  <%= f.error_messages %>
+
+  <div>
+    <%= f.label :author %><br />
+    <%= f.text_field :author, :disabled => disabled %>
+  </div>
+  <div class='big-box'>
+    <%= f.label :title %><br />
+    <%= f.text_field :title, :disabled => disabled %>
+  </div>
+  <div>
+    <%= f.label :edition %><br />
+    <%= f.text_field :edition, :disabled => disabled %>
+  </div>
+  <div>
+    <%= f.label :place_publisher %><br />
+    <%= f.text_field :place_publisher, :disabled => disabled %>
+  </div>
+  <div>
+    <%= f.label :status %><br />
+    <%= f.text_field :status, :disabled => disabled %>
+  </div>
+  <div class="small-box">
+    <%= f.label :clas_no %><br />
+    <%= f.text_field :clas_no, :disabled => disabled %>
+  </div>
+  <div class="small-box">
+    <%= f.label :year %><br />
+    <%= f.text_field :year, :disabled => disabled %>
+  </div>
+  <div class="small-box">
+    <%= f.label :pages %><br />
+    <%= f.text_field :pages, :disabled => disabled %>
+  </div>
+  <div class="small-box">
+    <%= f.label :cost %><br />
+    <%= f.text_field :cost, :disabled => disabled %>
+  </div>
+  <div>
+    <%= f.label :volume %><br />
+    <%= f.text_field :volume, :disabled => disabled %>
+  </div>
+  <div>
+    <%= f.label :source %><br />
+    <%= f.text_field :source, :disabled => disabled %>
+  </div>
+  <div>
+    <%= f.label :bill_no %><br />
+    <%= f.text_field :bill_no, :disabled => disabled %>
+  </div>
+  <div class="small-box">
+    <%= f.label :section %><br />
+    <%= f.text_field :section, :disabled => disabled %>
+  </div>
+  <div class="small-box">
+    <%= f.label :shelf %><br />
+    <%= f.text_field :shelf, :disabled => disabled %>
+  </div>
+  <div class="big-box">
+    <%= f.label :keywords %><br />
+    <%= f.text_field :keywords, :disabled => disabled %>
+  </div>
+  <div>
+    <%= f.label :isbn %><br />
+    <%= f.text_field :isbn, :disabled => disabled %>
+  </div>
+  <div class="full-box">
+    <%= f.label :remarks %><br />
+    <%= f.text_area :remarks, :rows=>4, :disabled => disabled %>
+  </div>
+
+</div>
+<% end %>
+</div>

@@ -1,28 +1,50 @@
-<% form_for(@user, :url => (@user.new? ? users_path : user_path(@user.key))) do |f| %>
+<%
+button_disabled = false
+if @user.new? 
+  method =  :post
+  button_name = "create"
+  path = new_user_path
+else
+   if disabled
+     method =  :get
+     button_name = "edit"
+     path = edit_user_path(@user.key)
+     button_disabled = !allowed(:users, :edit)
+   else
+     method =  :put
+     button_name = "save"
+     path = user_path(@user.key)
+   end
+end
+%>
+<div id="body" style="clear: both;">
+
+<% form_for(@user, :url => path, :html => {:method => method}) do |f| %>
+ <div class="head" style="position: fixed; top: 4.1em;">
+<%= f.submit button_name, :class=>:button, :disabled => button_disabled %>
+</div>
+ <div class="entity">
   <%= f.error_messages %>
 
-  <% if @user.new? -%>
   <p>
     <%= f.label :login %><br />
-    <%= f.text_field :login %>
+    <%= f.text_field :login, :disabled => !@user.new? %>
   </p>
-  <% end -%>
+
   <p>
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :disabled => disabled %>
   </p>
 
   <p>
     <%= f.label :primary_group, 'Primary Group' %>
-    <%= collection_select("user", "primary", GroupSet.all_groups, :id, :name, {:prompt => true}) %>
+    <%= collection_select("user", "primary", GroupSet.all_groups, :id, :name, {:prompt => true}, {:disabled => disabled}) %>
   </p>
 
   <p>
     <%= f.label :user_group_ids, 'Group List' %> (use CRTL key to select/deselect)<br />
-    <%= collection_select("user", "group_ids", Group.visible_groups, :id, :name, {:prompt => true}, {:multiple => true}) %>
+    <%= collection_select("user", "group_ids", Group.visible_groups, :id, :name, {:prompt => true}, {:multiple => true, :disabled => disabled}) %>
   </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
+</div>
 <% end %>
