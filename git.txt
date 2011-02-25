@@ -1,0 +1,14 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+well then you need to learn how to push your changes to github
+first make $ git status
+to see what has changed
+then $ git diff or $ git diff app/views
+to see the changes and then add your files with 
+$ git add app/views/...
+and then you need to commit the added files
+$ git commit # add some remark about what you made with those files
+and to push the code
+$ git push
