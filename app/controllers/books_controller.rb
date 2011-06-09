@@ -91,8 +91,6 @@ class BooksController < ApplicationController
   # GET /books/1/edit
   def edit
     @book = Book.get!(params[:id])
-p @book
-p @book.state
   end
 
   # POST /books
