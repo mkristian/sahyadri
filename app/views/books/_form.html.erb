@@ -17,10 +17,10 @@ else
    end
 end
 %>
-<div id="body" style="clear: both;">
+<div id="body" style="margin-top:5em; clear: both;">
 
 <% form_for(:book, :url => path, :html => {:method => method}) do |f| %>
- <div class="head" style="position: fixed; top: 4.1em;">
+ <div class="head" style="top: 4.1em;">
 <%= f.submit button_name, :class=>:button, :disabled => button_disabled %>
 </div>
  <div class="entity">

@@ -8,9 +8,17 @@
   <meta http-equiv="refresh" content="<%= Configuration.instance.session_idle_timeout * 60 + 5 %>" />
   <% end -%>
   <title>Books: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'sahyadri' %>
 </head>
+
+
+<h1><a href="http://intranet">Sahyadri School</a><small>krishnamurti foundation india</small></h1>
+
+<h2>Library Management System</h2>
+
+
+<h4><a href="http://intranet"><font color=blue>[ INTRANET ]</font></a></h4>
+
 <body>
 <% if flash["notice"] || @notice -%>
 <div id="notice"><%= flash["notice"] || @notice %></div>
@@ -34,7 +42,7 @@
 
 </div>
 <div class="navigation right">
-<span>Welcome <%= controller.send(:current_user).name %></span>
+<span>Welcome! <%= controller.send(:current_user).name %></span>
 
   <% form_tag "", :method => :delete, :id => 'logout' do %>
 <input class="button" type="submit" value="logout" />
@@ -42,9 +50,15 @@
   <% end %>
 </div>
 </div>
+
+
+<%else %>
+
+
 <% end -%>
 
 <%= yield %>
+
 
 </body>
 </html>

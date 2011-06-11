@@ -1,5 +1,5 @@
 <% if @book.state -%>
-<div class="head" style="position: fixed; top: 4.1em; right: 0;z-index: 3; width:50%;">
+<div class="head" style="margin-top:4em; top: 4.1em; right: 0;z-index: 3; width:50%;">
 <% if allowed(:book_states, :destroy)
 form_tag book_state_path(@book.id), :method=>"delete", :style=>"float:right;" do %>
   <input class="button" type="submit" value="return book"/>
@@ -8,7 +8,7 @@ end %>
 <div  style="float:right;" class="issued"><span>issued by </span><b><%= @book.state.issued_by.name %></b> on <%= @book.state.issued_at.strftime('%d.%b %Y %H:%M:%S') %></div>
 </div>
 <% else -%>
-<div class="head" style="position: fixed; top: 4.1em; right: 0;z-index: 3; width:50%;">
+<div class="head" top: 4.1em; right: 0;z-index: 3; width:50%;">
 <% if allowed(:book_states, :create)
 form_for(:book_state, :url => book_state_path) do |f| %>
 <%= f.submit "issue", :class=>:button, :style=> "float:right" %>
