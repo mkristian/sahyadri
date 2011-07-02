@@ -1,18 +1,18 @@
 
-body {margin-left:.9em; margin-right:1em; padding:0; width:98%; color:#333333; font:bold 13px/1.6em "Liberation sans", Arial, Verdana, Helvetica, sans-serif; background:#ececec;}
+body {margin-left:.9em; margin-right:1em; padding:0; width:98%; color:#333333; font:bold 13px/1.6em "Liberation sans", Arial, Verdana, Helvetica, sans-serif; background:#efecec;}
 
 
-.clr { clear:both; padding:0; margin:0; width:100%; font-size:0px; line-height:0px;}
+.clr { float:left; padding:0; margin:0px 0 0 0px; width:100%; font-size:0px; line-height:0px;}
 .logo { padding:0; width:auto;}
 
 h1 { margin:0; padding:0px 0 10px; color:#959595; font:bold 21px/1.8em "Liberation", Arial, Helvetica, sans-serif; letter-spacing:-1px; text-align:center;}
 h1 a, h1 a:hover { color:#666666; text-decoration:none; text-transform:uppercase}
 h1 span { text-transform:uppercase; font-weight:normal;}
-h1 small { display:block; font:bold 12px/1.2em "Liberation sans", Arial, Helvetica, sans-serif; letter-spacing:normal; color:#666666; text-transform:none;}
-h2 { margin:0; background:lightgray; padding:0px 0 10px; color:darkblue; font:bold 24px/1.8em Textile, cursive;letter-spacing:-1px; text-align:center;}
+h1 small { display:block; font:normal 13px/1.2em "Liberation sans", Arial, Helvetica, sans-serif; letter-spacing:normal; color:#666666; text-transform:none;}
+h2 { margin-top:2px; color:darkblue; padding:0px 0 0px; background-color:lightblue; font:bold 20px/1.8em "Liberation", Arial, Helvetica, sans-serif; letter-spacing:-1px; text-align:center;}
 
-p { margin:8px 0; padding:0 0 8px 0; font:normal 12px/1.8em "Liberation sans", Arial, Helvetica, sans-serif;}
-a { color:#495957; text-decoration:underline;}
+p { margin:8px 0; padding:0 0 8px 0; font:normal 13px/2em "Liberation sans", Arial, Helvetica, sans-serif;}
+a { color:#001900; text-decoration:underline;}
 p.spec { padding:0 0 16px;}
 p.infopost { margin-bottom:12px; padding:6px 12px; background-color:#fff; color:#6d6d6d; border:1px solid #c9c9c9;}
 p.infopost a { color:#6d6d6d;}
@@ -37,7 +37,7 @@ img.hbg_img { padding:6px; border:2px solid #d7d7d7; background-color:#fff;}
 /* content */
 .content { }
 .content_resize { margin:0 auto; padding:15px 0; width:960px;}
-.content .mainbar { margin:0; padding:0; float:right; width:670px;}
+.content .mainbar { margin-right:100px; padding:0; float:right; width:760px;}
 .content .mainbar img { border:1px solid #d4d4d4; background-color:#fff;}
 .content .mainbar img.fl { margin:4px 16px 4px 0; float:left;}
 .content .mainbar .article { margin:0 0 24px; padding:0 24px;}
@@ -96,16 +96,20 @@ ol li .send { margin:16px 0 0 0;}
 
 
 
-
-
-
 #navigation{
-margin-top:0em;
+
+font-size:13px;
+margin-top:.1em;
 padding-top: .7em;
 background-color: lightgrey;
 width: 100%;
 height: 2.2em;
  }
+
+
+
+
+
 
 .left { 
 float: left;
@@ -116,14 +120,19 @@ float: right;
  }
 
 #navigation a { 
-padding-right: 1.2em;
+width: 5em;
+padding: 5px;
+background-color: lightgray;
+padding-right: 1em;
+border: 1px solid #C39C4E;
 
  }
 
 
-#navigation a:hover{ 
+#navigation a:hover{
 text-decoration: none;
-color: orange;
+color: black;
+background-color:orange;
  }
 
 #notice {
@@ -201,7 +210,7 @@ input.button
 
   top: 2em;
   width: 100%;  
-  margin-top: 1em;
+  margin-top: 2em;
   padding-bottom: -1em;
   }
 
@@ -225,7 +234,7 @@ input.button
 
   width: 100%;
   overflow: auto; 
-  height: 350px;
+  height: 375px;
   overflow-x: hidden;
 border-bottom: 4px solid #606060;
 
@@ -233,7 +242,9 @@ border-bottom: 4px solid #606060;
 
 
 #search table
-{ 
+{
+margin-top:1em;  
+width: 100%;
   border-right: 1px solid black;
   }
 

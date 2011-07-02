@@ -1,5 +1,8 @@
+<h2>Library Management System</h2>
+
 <%= render :partial => "common/head", :locals => { :prefix => "book", :fuzzy => true, :path => books_path, :new_path => new_book_path, :delete_path => (allowed(:books, :destroy) ? book_path(@book.id): nil) }  %>
 
 <%= render :partial => "issue_book" %>
 
 <%= render :partial => "form", :locals => { :disabled => false }  %>
+

@@ -20,12 +20,12 @@ end
 <div id="body" style="clear: both;">
 
 <% form_for(@user, :url => path, :html => {:method => method}) do |f| %>
- <div class="head" style="position: fixed; top: 4.1em;">
+ <div class="head" style="float:center; top: 4em;"><br>
 <%= f.submit button_name, :class=>:button, :disabled => button_disabled %>
 </div>
+
  <div class="entity">
   <%= f.error_messages %>
-
   <p>
     <%= f.label :login %><br />
     <%= f.text_field :login, :disabled => !@user.new? %>

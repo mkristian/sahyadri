@@ -35,6 +35,23 @@ class UsersController < ApplicationController
     create_old
   end
 
+
+def reset_password
+@user = USER.first_or_get!(params[:id])
+@user.reset_password
+@user.current_user = current_user 
+if @user.save
+           flash[:notice] = "User was successfully created: #{@user.password}"
+           redirect_to(user_url(@user.id))
+else
+           flash[:notice] = "some error occurred"
+           render :action => "show" 
+end
+end
+
+
+
+
   def update
     setup_groups
     params[:user].delete(:login)
@@ -69,3 +86,5 @@ class UsersController < ApplicationController
     end
   end
 end
+
+

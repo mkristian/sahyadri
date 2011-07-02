@@ -7,17 +7,13 @@
   <% if controller.send :current_user %>
   <meta http-equiv="refresh" content="<%= Configuration.instance.session_idle_timeout * 60 + 5 %>" />
   <% end -%>
-  <title>Books: <%= controller.action_name %></title>
+  <title> Books & Bills : <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'sahyadri' %>
 </head>
 
 
 <h1><a href="http://intranet">Sahyadri School</a><small>krishnamurti foundation india</small></h1>
 
-<h2>Library Management System</h2>
-
-
-<h4><a href="http://intranet"><font color=blue>[ INTRANET ]</font></a></h4>
 
 <body>
 <% if flash["notice"] || @notice -%>
@@ -25,8 +21,21 @@
 <% end -%>
 
 <% if controller.send(:current_user) -%>
+
+
+<div style="background-color:lightblue; padding-top:0.3em;">
+<a href=http://intranet><img style=margin-left:15px; src="<%= url_for(:controller => :bills) %>/../home.png" title="intranet" border="0" width="26" height="26" alt="image"></a>
+
+<a href="<%= books_path %>"><img style=margin-left:15px; src="<%= url_for(:controller => :bills) %>/../Book.png" title="books" border="0" width="26" height="26" alt="image"></a>
+
+<a href="<%= url_for(:controller => :bills) %>"><img style=margin-left:15px; src="<%= url_for(:controller => :bills) %>/../bill.png" title="bills" border="0" width="26" height="26" alt="image"></a>
+
+
+</div>
 <div id="navigation">
 <div class="navigation left">
+<a href="http://intranet">intranet</a>
+
 <% if allowed(:books, :index) -%>
 <a href="<%= books_path %>">books</a>
 <% end -%>
@@ -58,7 +67,6 @@
 <% end -%>
 
 <%= yield %>
-
 
 </body>
 </html>

@@ -37,4 +37,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'books/:id/edit', :controller => 'books', :action => :show, :conditions => { :method => [:post] }
   map.connect 'books/new', :controller => 'books', :action => :show, :conditions => { :method => [:post] }
 
+  map.connect 'users/:id/reset_password', :controller => 'users', :action => :reset_password, :conditions => { :method => [:post, :get] }
+	
 end

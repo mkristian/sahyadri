@@ -2,8 +2,6 @@ require 'csv'
 require 'books_import_export'
 class BooksController < ApplicationController
 
-  layout "sahyadri"
-
   before_filter :users
 
   def users

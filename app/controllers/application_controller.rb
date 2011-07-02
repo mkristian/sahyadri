@@ -1,10 +1,13 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
+
 class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :login
   before_filter :check_session_expiry
   
+layout "sahyadri"
+
   include Ixtlan::Rails::RescueModule
   # you can overwrite a rescue directive here
   # rescue_from ::Ixtlan::StaleResourceError, :with => :stale_resource
