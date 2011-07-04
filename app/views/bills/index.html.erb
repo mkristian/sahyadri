@@ -16,7 +16,7 @@
 <div class="content">
       <div class="mainbar">
 <p class="infopost">
-<font color=darkgreen size=3><b> Welcome ! </b><br></font><br>
+<font color=darkred size=3><b> Welcome ! </b><br></font><br>
 <font color=darkgreen >Thank you for signing in for your needs to receive details of telephone, tuckshop, medical, transport expenses and salary details.</font><br><br>
 
 <font color=#001900>We trust that through the intranet staff members can interface better with the school administration and accounts for any clarification they require.</font><br><br>
@@ -26,14 +26,14 @@
 
 </div></div>
 
-<br>
 <div style="color:darkgreen; margin-left:1.5em; font-size:14px; font-weight:bold"> 
 <%=  @dir %>
 </div>
 
 
-<% @files.each do |file| %> 
-<div style="margin-top:1em; margin-left:1.5em; background-color:lightgray; width: 190px; padding: 6px 0px 0px 16px;">  
+<% @files.each do |file| %>
+ 
+<div style="margin-top:1em; margin-left:1.5em; background-color:lightgray; width: 250px; padding: 10px 0px 3px 16px;">  
 <img src="<%= url_for(:controller => :bills) %>/../dot.png" width="20" height="20" alt="image">&nbsp;&nbsp;&nbsp;<a href="<%= file %>"><%= file.to_display %></a></div>
 <% end %>
 
