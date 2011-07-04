@@ -1,5 +1,4 @@
 <h2>Users Management System</h2>
-
 <%= render :partial => "common/index_head", :locals => { :prefix => "user", :fuzzy => false, :path => users_path, :new_path => new_user_path, :csv => false }  %>
 
 <div id="body" style="clear: both;">
@@ -27,4 +26,9 @@
 <h3>no user found</h3>
 
 <% end -%>
+
+
+<%= yield %>
+
+
 </div>

@@ -1,21 +1,26 @@
 
-body {margin-left:.9em; margin-right:1em; padding:0; width:98%; color:#333333; font:bold 13px/1.6em "Liberation sans", Arial, Verdana, Helvetica, sans-serif; background:#efecec;}
+body {margin-left:.9em; margin-right:1em; padding:0; width:98%; color:#333333; font:bold 13px/1.6em "Liberation sans", Arial, Verdana, Helvetica, sans-serif; background:#ececec;}
 
 
 .clr { float:left; padding:0; margin:0px 0 0 0px; width:100%; font-size:0px; line-height:0px;}
 .logo { padding:0; width:auto;}
+h1 { margin-top:12px; color:#009966; padding:10px 0 0px; font:bold 22px 'Lucida Console', Monaco, monospace; letter-spacing:-0.1px; text-align:center;}
 
-h1 { margin:0; padding:0px 0 10px; color:#959595; font:bold 21px/1.8em "Liberation", Arial, Helvetica, sans-serif; letter-spacing:-1px; text-align:center;}
-h1 a, h1 a:hover { color:#666666; text-decoration:none; text-transform:uppercase}
-h1 span { text-transform:uppercase; font-weight:normal;}
-h1 small { display:block; font:normal 13px/1.2em "Liberation sans", Arial, Helvetica, sans-serif; letter-spacing:normal; color:#666666; text-transform:none;}
-h2 { margin-top:2px; color:darkblue; padding:0px 0 0px; background-color:lightblue; font:bold 20px/1.8em "Liberation", Arial, Helvetica, sans-serif; letter-spacing:-1px; text-align:center;}
+h1 small { display:block; font:normal 13px/1.9em "Liberation sans", Arial, Helvetica, sans-serif; letter-spacing:normal; color:#666666; text-transform:none;}
+h2 { margin-top:2px; color:#0033FF; padding:2px 0 1px; background-color:lightblue; font:bold 17px/1.8em 'Lucida Console', Monaco, monospace; letter-spacing:0px; text-align:center;}
 
-p { margin:8px 0; padding:0 0 8px 0; font:normal 13px/2em "Liberation sans", Arial, Helvetica, sans-serif;}
+
+
+
+p { margin:8px 0; padding:0 0 8px 0; font:normal 13px/1.7em "Liberation sans", Arial, Helvetica, sans-serif;}
+
 a { color:#001900; text-decoration:underline;}
 p.spec { padding:0 0 16px;}
 p.infopost { margin-bottom:12px; padding:6px 12px; background-color:#fff; color:#6d6d6d; border:1px solid #c9c9c9;}
 p.infopost a { color:#6d6d6d;}
+
+p.infopost_new { width:538px; margin-left:20.4%; font:normal 12px/1.4em "Liberation", Arial, Helvetica, sans-serif; margin-bottom:0px; padding:6px 14px; background-color:#fff; color:#404040; border:1px solid #c9c9c9;}
+
 a.rm { color:#fff; padding:6px 16px; text-decoration:none; font-weight:bold; background-color:#495957;}
 a.com { float:right; margin:0; text-decoration:none; color:#fff;}
 a.com span { }
@@ -71,8 +76,8 @@ ul.sb_menu li a:hover, ul.ex_menu li a:hover { color:#495957; font-weight:bold; 
 
 /* footer */
 .footer { border-top:1px solid #d4d4d4;}
-.footer_resize { margin:0 auto; padding:12px 24px; width:912px;}
-.footer p.lf { margin:0; padding:24px 0; text-align:left; width:auto; line-height:1.5em;}
+.footer_resize { margin:0 auto; padding:0px 10px; width:912px;}
+.footer p.lf { margin:0; padding:12px 0; text-align:left; width:auto; }
 .footer p.lf a { color:#6d6d6d;}
 .footer p.lf span { float:right;}
 
@@ -93,13 +98,23 @@ ol li .send { margin:16px 0 0 0;}
 
 
 
+.login_form{
+width: 38%;
+margin-left: auto;
+margin-right: auto;
+height: 25em;
+border: 1px solid #888888;
+background-color:#FFCCFF;
+}
+
+
 
 
 
 #navigation{
 
 font-size:13px;
-margin-top:.1em;
+margin-top:.2em;
 padding-top: .7em;
 background-color: lightgrey;
 width: 100%;
@@ -193,14 +208,14 @@ input.button
 
 #search tr.even 
 {
-  background-color: #eeeeee;
+  background-color: #FFFFCC;
   }
 
 
 
 #search thead tr 
 {
-  background-color: lightgray;
+  background-color: #CCCCCC;
   color: darkred;
   }  
 

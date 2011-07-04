@@ -5,4 +5,6 @@ Ixtlan::Guard.initialize(:users,
                    :update => [:users],
                    :new => [:users],
                    :create => [:users],
+	           :reset_password => [:users],
                    :destroy => [] })
+		   

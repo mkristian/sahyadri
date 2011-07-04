@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def create
+def create
     setup_groups
     create_old
   end
@@ -41,8 +41,9 @@ def reset_password
 @user.reset_password
 @user.current_user = current_user 
 if @user.save
-           flash[:notice] = "User was successfully created: #{@user.password}"
-           redirect_to(user_url(@user.id))
+            
+           flash[:notice] = "User was successfully created: #{@user.password}"	
+          
 else
            flash[:notice] = "some error occurred"
            render :action => "show" 

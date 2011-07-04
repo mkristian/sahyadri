@@ -9,10 +9,12 @@
   <% end -%>
   <title> Books & Bills : <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'sahyadri' %>
+  <%= stylesheet_link_tag 'scaffold' %>
 </head>
 
+<h1>Sahyadri School</hr><small>krishnamurti foundation india</small></h1>
 
-<h1><a href="http://intranet">Sahyadri School</a><small>krishnamurti foundation india</small></h1>
+<hr size=6 color=orange width=30%><br>
 
 
 <body>
@@ -67,6 +69,19 @@
 <% end -%>
 
 <%= yield %>
+
+<br>
+<p style="color:green;"><%= flash[:notice] %></p>
+
+
+<div class="clr">
+<div class="footer">
+      <p class="lf">&copy; Copyright <a href="http://www.sahyadrischool.org">sahyadri school</a> <span>Design by <a href="http://www.sahyadrischool.org/" title="website">sahyadri school</a></span></p>
+      <div class="clr"></div>
+
+    </div>
+
+
 
 </body>
 </html>
