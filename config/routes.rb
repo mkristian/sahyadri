@@ -24,8 +24,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups
 
-  map.resources :users
-
   map.resources :permissions
 
   map.resources :book_states
@@ -37,6 +35,11 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'books/:id/edit', :controller => 'books', :action => :show, :conditions => { :method => [:post] }
   map.connect 'books/new', :controller => 'books', :action => :show, :conditions => { :method => [:post] }
 
-  map.connect 'users/:id/reset_password', :controller => 'users', :action => :reset_password, :conditions => { :method => [:post, :get] }
-	
+
+map.resources :users  
+map.connect 'users', :controller => :users, :action => 'logout'
+map.connect 'users/:id/reset_password', :controller => 'users', :action => :reset_password, :conditions => { :method => [:delete, :post, :get] }
+map.connect 'users/new/:id', :controller => 'users', :action => :create, :conditions => { :method => [:delete, :put, :post] }
+
+
 end
