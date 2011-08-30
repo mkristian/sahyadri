@@ -131,8 +131,10 @@ class BooksController < ApplicationController
   # DELETE /books/1.xml
   def destroy
     @book = Book.get(params[:id])
-    @book.current_user = current_user
-    @book.destroy if @book
+    if @book
+      @book.current_user = current_user
+      @book.destroy 
+    end
 
     respond_to do |format|
       flash[:notice] = 'Book was successfully deleted.'
