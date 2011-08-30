@@ -38,12 +38,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html {
         if @books.size == 1
-          @book = @books[0]
-          if allowed(:edit)
-            render "edit"
-          else
-            render "show"
-          end
+          redirect_to(allowed(:edit) ? edit_book_path(@books[0].id) : book_path(@books[0].id))
         else
           render
         end
