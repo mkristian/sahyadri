@@ -1,10 +1,10 @@
 
 <%
 button_disabled = false
-if @book.new? 
+if @book.new?
   method =  :post
   button_name = "create"
-  path = new_book_path
+  path = books_path
 else
    if disabled
      method =  :get
