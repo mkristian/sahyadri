@@ -59,14 +59,17 @@ end
     <%= f.label :pages %><br />
     <%= f.text_field :pages, :disabled => disabled %>
   </div>
+<% if allowed(:books, :edit) %>
   <div class="small-box">
     <%= f.label :cost %><br />
     <%= f.text_field :cost, :disabled => disabled %>
   </div>
+<% end %>
   <div>
     <%= f.label :volume %><br />
     <%= f.text_field :volume, :disabled => disabled %>
   </div>
+<% if allowed(:books, :edit) %>
   <div>
     <%= f.label :source %><br />
     <%= f.text_field :source, :disabled => disabled %>
@@ -75,6 +78,7 @@ end
     <%= f.label :bill_no %><br />
     <%= f.text_field :bill_no, :disabled => disabled %>
   </div>
+<% end %>
   <div class="small-box">
     <%= f.label :section %><br />
     <%= f.text_field :section, :disabled => disabled %>
