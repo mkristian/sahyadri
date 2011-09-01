@@ -9,19 +9,15 @@
      <thead>
       <tr> 
     <th>Date</th>
-    <th>Author</th>
     <th>Title</th>
+    <th>Author</th>
+    <th>Publisher</th>
     <th>Edition</th>
-    <th>Place publisher</th>
-    <th>Status</th>
-    <th>Class no</th>
+    <th>Vol</th>
     <th>Year</th>
     <th>Pages</th>
-    <th>Volume</th>
-    <th>Source</th>
-    <th>Cost</th>
-    <th>Bill no</th>
-    <th>Isbn</th>
+    <th>Classification No.</th>
+    <th>Status</th>
     <th>Keywords</th>
     <th>Remarks</th>
     <th width="13"><!-- --> </th>
@@ -36,19 +32,15 @@
 
   <tr class='<%= cycle("odd", "even") %>' >
     <td><%=h book.date %></td>
-    <td><%=h book.author %></td>
     <td><a href="<%= book_path %>" title="<%= title %>"><%=h book.title %></a></td>
-    <td><%=h book.edition %></td>
+    <td><%=h book.author %></td>
     <td><%=h book.place_publisher %></td>
-    <td><%=h book.status %></td>
-    <td><%=h book.clas_no %></td>
+    <td><%=h book.edition %></td>
+    <td><%=h book.volume %></td>
     <td><%=h book.year %></td>
     <td><%=h book.pages %></td>
-    <td><%=h book.volume %></td>
-    <td><%=h book.source %></td>
-    <td><%=h book.cost %></td>
-    <td><%=h book.bill_no %></td>
-    <td><%=h book.isbn %></td>
+    <td><%=h book.clas_no %></td>    
+    <td><%=h book.status %></td>
     <td><%=h book.keywords %></td>
     <td><%=h book.remarks %></td>
     <td></td>
